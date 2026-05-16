@@ -1,0 +1,3 @@
+# rishavgupta.com
+
+Personal academic website for Rishav Gupta, a first-year PhD student in Computer Science at the University of Maryland, Baltimore County (UMBC), researching smartphone-based cardiovascular health sensing. The site is built with plain HTML5 and CSS3 — no frameworks, no build step — and is hosted on GitHub Pages at [rishavgupta.com](https://rishavgupta.com). To update content, edit `index.html` directly; to change styling, edit `style.css`. Drop real images into the `images/` folder (replacing the placeholder rectangles) and replace `Rishav_Gupta_CV.pdf` with your current CV to complete the site.

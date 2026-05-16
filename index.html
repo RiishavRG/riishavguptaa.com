@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rishav Gupta</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="header-photo">
+      <!-- Replace headshot.jpg with your actual photo -->
+      <img src="images/headshot.png" alt="Rishav Gupta" width="190"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <div class="photo-placeholder" style="display:none;">Photo</div>
+    </div>
+
+    <div class="header-info">
+      <h1>Rishav Gupta</h1>
+      <p class="title">PhD Student in Computer Science</p>
+      <p class="affiliation">University of Maryland, Baltimore County</p>
+      <p class="advisor">
+        Advised by <a href="https://leetton.github.io/">Dr. Dong Li</a>,
+        Future Sensing and Interaction (FSI) Lab
+      </p>
+      <nav class="contact-links">
+        <a href="mailto:rishavg1@umbc.edu"><i class="fa-solid fa-envelope"></i> Email</a>
+        <a href="Rishav_Gupta_CV.pdf"><i class="fa-solid fa-file-pdf"></i> CV</a>
+        <a href="#" title="Google Scholar — link coming soon"><i class="fa-brands fa-google-scholar"></i> Google Scholar</a>
+        <a href="#" title="GitHub — link coming soon"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/riishavrg/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== BIO ========== -->
+  <section id="bio">
+    <p>
+      I am a first-year PhD student in Computer Science at the <a href="https://www.umbc.edu">University of Maryland, Baltimore County (UMBC)</a>,
+      where I work in the <a href="https://leetton.github.io/fsi/">Future Sensing and Interaction (FSI) Lab</a> with <a href="https://leetton.github.io/">Dr. Dong Li</a>. My research develops
+      smartphone-based methods for cardiovascular health sensing, combining digital signal processing, acoustic
+      sensing, and machine learning to bring meaningful health insights to everyday devices.
+    </p>
+    <p>
+      Before starting my PhD, I spent over five years as a Senior iOS Engineer at <a href="https://www.gojek.com">Gojek</a> and <a href="https://www.gonuclei.com">Nuclei</a>, building
+      large-scale mobile applications used by millions of users. I am especially interested in research that
+      bridges low-level sensing with real-world, deployable mobile systems that reach people who need them.
+    </p>
+  </section>
+
+  <!-- ========== NEWS ========== -->
+  <section id="news">
+    <h2>News</h2>
+    <ul class="news-list">
+      <li class="news-item">
+        <span class="news-date">May 2026</span>
+        <span class="news-text">Received the <strong>Computing for Social Good Special Award</strong> at the COEIT Research Day,
+        presented by Dean Jeanne M. van Briesen. One of only 2 awards across 114 posters.</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">May 2026</span>
+        <span class="news-text">PocketCardio won <strong>1st Place</strong> at the Maryland NEW VENTURE&trade; Program Pitch Night
+        at bwtech@UMBC.</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">April 2026</span>
+        <span class="news-text">Received the <strong>Best Poster Award</strong> at CSEE Research Day, UMBC.</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">April 2026</span>
+        <span class="news-text"><em>Phonotonos</em> accepted at <strong>ACM MobiSys 2026</strong> (Emerging Ideas track).</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">May 2025</span>
+        <span class="news-text">Received <strong>Best Poster Award</strong> at COEIT Research Day, UMBC.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ========== RESEARCH ========== -->
+  <section id="research">
+    <h2>Research</h2>
+    <p>
+      My current research focuses on smartphone-based physiological sensing for cardiovascular health.
+      Key projects include:
+    </p>
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-card-header">
+          <span class="research-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+          <span class="research-card-title">PocketCardio</span>
+        </div>
+        <p>Smartphone-based non-invasive cardiovascular monitoring via ultrasonic Doppler sensing,
+        measuring heart rate, blood pressure, and pulse transit time variability. Supported by the
+        Google Research Scholar Award and UMB ICTR ATIP Grant.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-header">
+          <span class="research-icon"><i class="fa-solid fa-wave-square"></i></span>
+          <span class="research-card-title">Phonotonos</span>
+        </div>
+        <p>Through-skin ultrasonic blood flow sensing using commodity smartphone speakers and
+        microphones, enabling continuous vascular monitoring without specialized hardware.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-header">
+          <span class="research-icon"><i class="fa-solid fa-microscope"></i></span>
+          <span class="research-card-title">FMCW Ultrasound for Tissue Biomechanics</span>
+        </div>
+        <p>Quantifying soft tissue viscoelastic properties via acoustic stimuli for human-machine
+        interaction comfort modeling, in collaboration with the UMBC Mechanical Engineering department.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-card-header">
+          <span class="research-icon"><i class="fa-solid fa-microchip"></i></span>
+          <span class="research-card-title">High-Frequency Audio Codec</span>
+        </div>
+        <p>Extending smartphone audio sampling from 48 kHz to 192 kHz via an external codec without
+        device rooting, enabling high-resolution ultrasonic sensing on commodity devices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PUBLICATIONS ========== -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <!-- Publication 1 -->
+    <article class="pub-row">
+      <div class="pub-thumb">
+        <img src="images/Phonotonos.jpg" alt="Phonotonos thumbnail"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="thumb-placeholder" style="display:none;">Phonotonos</div>
+      </div>
+      <div class="pub-info">
+        <p class="pub-title">[Emerging Ideas] Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</p>
+        <p class="pub-authors">
+          Shirui Cao, Jie Xiong, <strong>Rishav Gupta</strong>, Sunghoon Ivan Lee,
+          Jeremy Gummeson, Dong Li
+        </p>
+        <p class="pub-venue">
+          <span class="venue-badge accepted">ACM MobiSys 2026</span>
+        </p>
+        <p class="pub-links">
+          <a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github"></i> Code</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- Publication 2 -->
+    <article class="pub-row">
+      <div class="pub-thumb">
+        <img src="images/Ultrasound_Watermark.jpg" alt="Ultrasound Watermark thumbnail"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="thumb-placeholder" style="display:none;">Ultrasound Watermark</div>
+      </div>
+      <div class="pub-info">
+        <p class="pub-title">
+          Ultrasound Watermark: Real-Time Acoustic Watermarking for Voice Scam Protection on Smartphones
+        </p>
+        <p class="pub-authors">
+          Renzhi Hao, Shirui Cao, Yizhu Wen, <strong>Rishav Gupta</strong>, Dharani Nadendla,
+          Mehran Kafai, Hanqing Guo, Dong Li
+        </p>
+        <p class="pub-venue">
+          <span class="venue-badge review">ACM CCS 2026</span>
+          <span class="venue-badge under-review">Under Review</span>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ========== INDUSTRY EXPERIENCE ========== -->
+  <section id="experience">
+    <h2>Industry Experience</h2>
+    <ul class="entry-list">
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-brands fa-app-store-ios"></i></div>
+        <div class="entry-body">
+          <div class="entry-top">
+            <a href="https://www.gojek.com" class="entry-title">Gojek (GoTo Group)</a>
+            <span class="exp-duration">2 yrs 7 mos</span>
+          </div>
+          <div class="entry-sub">Senior iOS Engineer</div>
+          <div class="entry-meta">Feb 2022 – Sep 2024 &middot; Bengaluru, India</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <div class="entry-body">
+          <div class="entry-top">
+            <a href="https://www.gonuclei.com" class="entry-title">Nuclei</a>
+            <span class="exp-duration">2 yrs 7 mos</span>
+          </div>
+          <div class="entry-sub">Senior iOS Developer &amp; Team Lead</div>
+          <div class="entry-meta">Jul 2019 – Feb 2022 &middot; Bengaluru, India</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-brands fa-android"></i></div>
+        <div class="entry-body">
+          <div class="entry-top">
+            <span class="entry-title">Hera doo</span>
+            <span class="exp-duration">2 mos</span>
+          </div>
+          <div class="entry-sub">Android Developer Intern</div>
+          <div class="entry-meta">Jun – Jul 2018 &middot; Mostar, Bosnia and Herzegovina</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ========== EDUCATION ========== -->
+  <section id="education">
+    <h2>Education</h2>
+    <ul class="entry-list">
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">PhD, Computer Science</div>
+          <div class="entry-sub">University of Maryland, Baltimore County</div>
+          <div class="entry-meta">Jan 2025 – Present</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">MS, Computer Science</div>
+          <div class="entry-sub">University of Maryland, Baltimore County</div>
+          <div class="entry-meta">Jan 2025 – Dec 2025</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">B.Tech, Information Technology</div>
+          <div class="entry-sub">Manipal Institute of Technology</div>
+          <div class="entry-meta">Jun 2015 – May 2019 &middot; Ranked 8th of 132</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ========== AWARDS ========== -->
+  <section id="awards">
+    <h2>Awards</h2>
+    <ul class="entry-list">
+
+      <li class="entry-item">
+        <div class="entry-icon award-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">Computing for Social Good Special Award</div>
+          <div class="entry-sub">COEIT Research Day, UMBC</div>
+          <div class="entry-meta">May 2026 &middot; 1 of 2 awards across 114 posters</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon award-icon"><i class="fa-solid fa-ranking-star"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">1st Place, Maryland NEW VENTURE&trade; Program Pitch Night</div>
+          <div class="entry-sub">bwtech@UMBC</div>
+          <div class="entry-meta">May 2026</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon award-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">Best Poster Award</div>
+          <div class="entry-sub">CSEE Research Day, UMBC</div>
+          <div class="entry-meta">April 2026</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon award-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">Best Poster Award</div>
+          <div class="entry-sub">COEIT Research Day, UMBC</div>
+          <div class="entry-meta">May 2025</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <p>Last updated: May 2026 &middot; Hosted on GitHub Pages</p>
+  </footer>
+
+</div><!-- end .container -->
+</body>
+</html>
