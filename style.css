@@ -367,6 +367,15 @@ section {
   border: 1px solid #fcd29b;
 }
 
+/* Accepted but not yet presented or published. Blue reads as "coming":
+   distinct from green ("accepted venue") and orange ("under review").
+   Text #1a56c4 on #f0f4ff has a 6.0:1 contrast ratio (WCAG AA needs 4.5:1). */
+.venue-badge.to-appear {
+  background: #f0f4ff;
+  color: #1a56c4;
+  border: 1px solid #bad0f8;
+}
+
 .pub-links {
   font-size: 14px;
   margin-bottom: 0;
