@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+  index.html - the whole riishavguptaa.com site: one page, plain HTML + style.css, no build step.
+  Served by GitHub Pages from the main branch; a push to main redeploys in about a minute.
+  Loads: style.css, images/*, Font Awesome icons (CDN); the CV button serves Rishav_Gupta_CV.pdf.
+  Content mirrors that CV PDF. Only accepted or published work is listed here.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -41,7 +47,7 @@
   <!-- ========== BIO ========== -->
   <section id="bio">
     <p>
-      I am a first-year PhD student in Computer Science at the <a href="https://www.umbc.edu">University of Maryland, Baltimore County (UMBC)</a>,
+      I am a PhD student in Computer Science at the <a href="https://www.umbc.edu">University of Maryland, Baltimore County (UMBC)</a>,
       where I work in the <a href="https://leetton.github.io/fsi/">Future Sensing and Interaction (FSI) Lab</a> with <a href="https://leetton.github.io/">Dr. Dong Li</a>. My research develops
       smartphone-based methods for cardiovascular health sensing, combining digital signal processing, acoustic
       sensing, and machine learning to bring meaningful health insights to everyday devices.
@@ -57,6 +63,25 @@
   <section id="news">
     <h2>News</h2>
     <ul class="news-list">
+      <li class="news-item">
+        <span class="news-date">September 2026</span>
+        <span class="news-text">Demo of <em>Phonotonos</em> accepted at <strong>ACM MobiCom 2026</strong> (Demo track).</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">September 2026</span>
+        <span class="news-text"><em>Ultrasound Watermark</em> accepted at <strong>EdgeSP 2026</strong>, the 9th ACM/IEEE
+        Workshop on Security and Privacy in Edge Computing.</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">September 2026</span>
+        <span class="news-text">Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong>
+        in the UMBC Graduate Student Association for 2026&ndash;2027.</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">August 2026</span>
+        <span class="news-text">Work-in-progress paper on <em>smartphone-based acoustic tissue characterization</em>
+        accepted at <strong>ACM MobiCom 2026</strong>.</span>
+      </li>
       <li class="news-item">
         <span class="news-date">May 2026</span>
         <span class="news-text">Received the <strong>Computing for Social Good Special Award</strong> at the COEIT Research Day,
@@ -89,6 +114,63 @@
     <!-- Publication 1 -->
     <article class="pub-row">
       <div class="pub-thumb">
+        <img src="images/TissueCharacterization.jpg" alt="Acoustic tissue characterization thumbnail"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="thumb-placeholder" style="display:none;">Tissue Characterization</div>
+      </div>
+      <div class="pub-info">
+        <p class="pub-title">[Work-in-Progress] Smartphone-based Acoustic Tissue Characterization for Personalized Body-contact Systems</p>
+        <p class="pub-authors">
+          <strong>Rishav Gupta</strong>, Alyssa N. Maguina, Sithumina Weerarathna,
+          Janelle P. Clark, Dong Li
+        </p>
+        <p class="pub-venue">
+          <a href="https://www.sigmobile.org/mobicom/2026/" class="venue-badge accepted">ACM MobiCom 2026</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- Publication 2 -->
+    <article class="pub-row">
+      <div class="pub-thumb">
+        <img src="images/Phonotonos.jpg" alt="Phonotonos demo thumbnail"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="thumb-placeholder" style="display:none;">Phonotonos Demo</div>
+      </div>
+      <div class="pub-info">
+        <p class="pub-title">[Demo] Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</p>
+        <p class="pub-authors">
+          <strong>Rishav Gupta</strong>, Shirui Cao, Jie Xiong, Sunghoon Ivan Lee,
+          Jeremy Gummeson, Dong Li
+        </p>
+        <p class="pub-venue">
+          <a href="https://www.sigmobile.org/mobicom/2026/" class="venue-badge accepted">ACM MobiCom 2026</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- Publication 3 -->
+    <article class="pub-row">
+      <div class="pub-thumb">
+        <img src="images/Ultrasound_Watermark.jpg" alt="Ultrasound Watermark thumbnail"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="thumb-placeholder" style="display:none;">Ultrasound Watermark</div>
+      </div>
+      <div class="pub-info">
+        <p class="pub-title">Ultrasound Watermark: Real-time Acoustic Watermarking against Voice Scams on Smartphones</p>
+        <p class="pub-authors">
+          Renzhi Hao, Shirui Cao, Yizhu Wen, <strong>Rishav Gupta</strong>,
+          Dharani Nadendla, Mehran Kafai, Hanqing Guo, Dong Li
+        </p>
+        <p class="pub-venue">
+          <a href="https://acm-ieee-sec.org/2026/edgesp.php" class="venue-badge accepted">EdgeSP 2026</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- Publication 4 -->
+    <article class="pub-row">
+      <div class="pub-thumb">
         <img src="images/Phonotonos.jpg" alt="Phonotonos thumbnail"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
         <div class="thumb-placeholder" style="display:none;">Phonotonos</div>
@@ -111,10 +193,23 @@
 
   </section>
 
-  <!-- ========== INDUSTRY EXPERIENCE ========== -->
+  <!-- ========== EXPERIENCE (research position first, then industry) ========== -->
   <section id="experience">
-    <h2>Industry Experience</h2>
+    <h2>Experience</h2>
     <ul class="entry-list">
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-flask"></i></div>
+        <div class="entry-body">
+          <div class="entry-top">
+            <a href="https://www.umbc.edu" class="entry-title">University of Maryland, Baltimore County</a>
+            <!-- "Current" rather than a month count: a count like "1 yr 8 mos" would go stale every month -->
+            <span class="exp-duration">Current</span>
+          </div>
+          <div class="entry-sub">Graduate Research Assistant, <a href="https://leetton.github.io/fsi/">Future Sensing and Interaction (FSI) Lab</a></div>
+          <div class="entry-meta">Jan 2025 – Present &middot; Baltimore, MD</div>
+        </div>
+      </li>
 
       <li class="entry-item">
         <div class="entry-icon"><i class="fa-brands fa-app-store-ios"></i></div>
@@ -174,7 +269,7 @@
         <div class="entry-body">
           <div class="entry-title">MS, Computer Science</div>
           <div class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a></div>
-          <div class="entry-meta">Jan 2025 – Dec 2025</div>
+          <div class="entry-meta">Jan 2025 – Dec 2025 &middot; GPA 4.00/4.00</div>
         </div>
       </li>
 
@@ -209,7 +304,7 @@
         <div class="entry-body">
           <div class="entry-title">1st Place, Maryland NEW VENTURE&trade; Program Pitch Night</div>
           <div class="entry-sub"><a href="https://bwtech.umbc.edu/programs/maryland-new-venture/">bwtech@UMBC</a></div>
-          <div class="entry-meta">May 2026</div>
+          <div class="entry-meta">May 2026 &middot; for <em>PocketCardio</em></div>
         </div>
       </li>
 
@@ -234,9 +329,53 @@
     </ul>
   </section>
 
+  <!-- ========== SERVICE & LEADERSHIP (newest first; mirrors the CV) ========== -->
+  <section id="service">
+    <h2>Service &amp; Leadership</h2>
+    <ul class="entry-list">
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">Chair, Graduate Assistant Advisory Committee (GAAC)</div>
+          <div class="entry-sub"><a href="https://gsa.umbc.edu/gaac/">UMBC Graduate Student Association</a></div>
+          <div class="entry-meta">2026 – 2027</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-user-tie"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">HR Head</div>
+          <div class="entry-sub">ISTE Students&rsquo; Chapter, Manipal Institute of Technology</div>
+          <div class="entry-meta">2017 – 2018</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">Co-Event Head (Acumen)</div>
+          <div class="entry-sub">TechTatva &rsquo;17, Manipal Institute of Technology</div>
+          <div class="entry-meta">Oct 2017</div>
+        </div>
+      </li>
+
+      <li class="entry-item">
+        <div class="entry-icon"><i class="fa-solid fa-people-group"></i></div>
+        <div class="entry-body">
+          <div class="entry-title">Management Committee Member</div>
+          <div class="entry-sub">ISTE Students&rsquo; Chapter, Manipal Institute of Technology</div>
+          <div class="entry-meta">2016 – 2017</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
   <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
-    <p>Last updated: May 2026 &middot; Hosted on GitHub Pages</p>
+    <p>Last updated: September 2026 &middot; Hosted on GitHub Pages</p>
   </footer>
 
 </div><!-- end .container -->
