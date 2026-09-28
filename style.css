@@ -177,21 +177,27 @@ section {
    NEWS SECTION
    ========================================================================== */
 
+/* Two-column grid: column 1 is exactly as wide as the widest date pill
+   (max-content), column 2 takes the rest (1fr). Every item reuses these same
+   columns via subgrid, so each sentence starts at the same x however long its
+   month name is ("May" vs "September"). */
 .news-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 12px;
+  row-gap: 10px;
 }
 
 .news-item {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
+  display: grid;
+  grid-column: 1 / -1;             /* span both columns of the list... */
+  grid-template-columns: subgrid;  /* ...and share their widths across all rows */
+  align-items: baseline;           /* pill sits on the sentence's first line */
   font-size: 15px;
 }
 
 .news-date {
-  flex-shrink: 0;
+  text-align: center;              /* pills are all column-width now; centre the date */
   padding: 1px 9px;
   font-size: 12px;
   font-weight: 600;
@@ -289,12 +295,18 @@ section {
   box-shadow: 0 3px 10px rgba(0,0,0,0.09);
 }
 
+/* Every thumbnail sits in the same 200 x 120 px frame (5:3 = 1.67). Why 5:3:
+   a square figure fills the frame's height, the widest one (2.85:1) fills its
+   width, and the two get equal area when width/height = sqrt(2.85) = 1.69. */
 .pub-thumb {
-  flex: 0 0 130px;
+  flex: 0 0 200px;
 }
 
 .pub-thumb img {
-  width: 130px;
+  width: 200px;
+  height: 120px;
+  object-fit: contain;   /* shrink the whole figure to fit: never crop, never stretch */
+  background: #ffffff;   /* fills any space left beside or above the figure */
   display: block;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
@@ -302,8 +314,8 @@ section {
 
 /* Shown when thumbnail isn't present yet */
 .thumb-placeholder {
-  width: 130px;
-  height: 90px;
+  width: 200px;
+  height: 120px;
   background: #e8e8e8;
   display: flex;
   align-items: center;
@@ -532,6 +544,7 @@ section {
     width: 100%;
     max-width: 260px;
     height: auto;
+    aspect-ratio: 5 / 3;   /* same frame shape as desktop: 260 x 156 px on phones */
   }
 
   .news-date {
