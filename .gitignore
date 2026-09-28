@@ -8,3 +8,8 @@ cv-latex/
 CV.pdf
 Rishav Gupta Resume.docx
 CMSC601Assignment2-CV.pdf
+
+# Source figures for the publication thumbnails; the site uses the JPEGs in images/.
+Demo_phonotonos.pdf
+TissueAssessment.pdf
+Watermarking.pdf
