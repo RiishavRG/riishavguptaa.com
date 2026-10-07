@@ -87,8 +87,8 @@ img { max-width: 100%; height: auto; display: block; }   /* [L] images never wid
 
 /* ===================================================== 3. Header and navigation */
 .site-header {
-  position: sticky; top: 0; z-index: 10; /* [L] sticky on desktop so navigation is always one click away */
-  background: rgba(255, 255, 255, .96);
+  position: static;                      /* [L] scrolls away below 960 px, where the menu wraps to 2+ rows of unknown height; sticky only in the desktop block (10b) */
+  background: #fff;                      /* [L] solid white, not 96% opaque: text scrolling underneath no longer shows through */
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap {
@@ -109,7 +109,7 @@ img { max-width: 100%; height: auto; display: block; }   /* [L] images never wid
 }
 .nav a:hover { background: var(--accent-soft); color: var(--accent); }
 
-section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); }  /* [L] anchor jumps land below the sticky header, not under it */
+html { scroll-padding-top: var(--s4); }  /* [L] scroll-padding on the page, not scroll-margin on chosen targets: EVERY #link (sections AND paper cards) lands 16 px below the top; the desktop block adds the header height */
 
 /* ===================================================== 4. Hero: the 10-second test */
 .hero { background: var(--paper); border-bottom: 1px solid var(--line); }
@@ -182,6 +182,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
 /* ===================================================== 7. Publications */
 .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s4); }
 .pub { padding: var(--s5); border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.pub:target { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }  /* [L] :target = the card named in the URL (#pub-tissue): an orange outline shows which paper the link jumped to */
 .pub-tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s2); }
 .tag {
   font-size: .875rem; font-weight: 600;  /* [L] 14 px, up from the old 12 px badges (slide 24: tiny type) */
@@ -267,8 +268,11 @@ details pre {
 
 /* ===================================================== 10b. Desktop page grid (960 px and wider) */
 @media (min-width: 960px) {                     /* [L] 960 px, not 760: below this a 216 px heading column leaves the content too narrow */
+  .site-header { position: sticky; top: 0; z-index: 10; }  /* [L] sticky only here, where the header is always one 65 px row */
+  html { scroll-padding-top: calc(var(--header-h) + var(--s4)); }  /* [L] 64 px header + 16 px: a jumped-to card's top edge shows just below the header */
   .site-header .wrap { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); column-gap: var(--gutter-gap); }  /* [L] name over the photo/heading column, menu over the content column */
-  .nav ul { margin-left: calc(-1 * var(--s3)); }  /* [L] cancels the first link's 12 px padding, so "About" starts exactly at the content edge */
+  .nav a { padding: 0 var(--s2); }            /* [L] 8 px sides, not 12: the 7 links need ~588 px and fit one row from 960 px (at 12 px they wrapped, making the sticky header 93 px tall and hiding jump targets) */
+  .nav ul { margin-left: calc(-1 * var(--s2)); }  /* [L] cancels the first link's 8 px padding, so "About" starts exactly at the content edge */
   .split { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); column-gap: var(--gutter-gap); align-items: start; }  /* [L] heading | content, the same two columns as the hero */
   .split > h2 { font-size: 1.75rem; margin-bottom: 0; }  /* [L] 28 px, not 32: "Publications" fits the 216 px column on one line; no bottom margin because the content sits beside it, not below */
   .split .measure { max-width: none; }          /* [L] every block ends at the column's right edge (~760 px, ~80 characters) instead of some stopping at 672 px */
@@ -282,7 +286,6 @@ details pre {
   .project-figure { max-width: 30rem; }         /* [L] 480 px cap so the figure doesn't balloon on a 900 px screen */
 }
 @media (max-width: 760px) {                     /* [L] 760 px: below this, side-by-side layouts get too cramped */
-  .site-header { position: static; }            /* [L] not sticky on phones: a two-line menu would cover a quarter of the screen */
   .site-header .wrap { padding-block: var(--s2); }
   .nav a { padding: 0 var(--s2); }              /* [L] 8 px side padding on phones, not 12: the menu fits in ~2 rows instead of 3-4; height stays 44 px for fingers */
   .nav ul { margin-left: calc(-1 * var(--s2)); }  /* [L] lines the first link's text up with the name above it */
