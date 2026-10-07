@@ -189,6 +189,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
   background: var(--paper); color: var(--ink-2); border: 1px solid var(--line);
 }
 .tag-appear { background: var(--appear-bg); color: var(--appear-ink); border-color: var(--appear-line); }
+.tag abbr[title] { text-decoration: none; cursor: help; }  /* [L] no dotted underline inside a pill (browsers add one to <abbr title>); the help cursor still hints the full form on hover */
 .pub h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--s2); }
 .authors { margin: 0 0 var(--s1); color: var(--ink-2); }
 .authors .me { color: var(--ink); font-weight: 600; }   /* [L] your name in bold, as on the CV */
@@ -249,6 +250,7 @@ details pre {
 .entry-title { font-weight: 600; margin: 0; }
 .entry-sub { color: var(--ink-2); margin: 0; }
 .entry-note { color: var(--ink-2); margin: var(--s1) 0 0; }
+.entry-dur { display: block; font-size: .875rem; font-weight: 400; color: var(--ink-3); }  /* [L] own line under the date (block), lighter weight so the date stays the main label; 14 px in --ink-3 = 6.6:1 contrast */
 .entry-when { grid-column: 1; grid-row: 1; color: var(--ink-3); font-size: .9375rem; font-weight: 500; white-space: nowrap; margin: 0; }  /* [L] grid-row 1 = level with the title although it comes after it in the HTML (screen readers still hear title first) */
 .subsection + .subsection { margin-top: var(--s7); }
 .subsection h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: var(--s4); }

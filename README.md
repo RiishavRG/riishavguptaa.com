@@ -35,6 +35,9 @@ navigation, research identity statement, citable publications, accessibility, mo
   Paper links are the paper itself (DOI/PDF), code, data, video or slides; don't link the conference homepage.
 - **Separators:** write `&nbsp;·` (not ` ·`) between items on one line, so a line never starts with the dot.
 - **News:** add a `<li>` at the top of the News list; keep about 5 items, delete the oldest.
+- **New job (Experience):** copy an entry; in its `<span class="entry-dur">` set `data-start="YYYY-MM"`,
+  plus `data-end="YYYY-MM"` once it ends (leave `data-end` out while it's current: the duration then
+  updates itself every month). Durations count both the first and last month, like LinkedIn.
 - **Press coverage:** add a `<li>` at the top of "In the media" (under News), with the headline as the link text.
 - **CV:** replace `Rishav_Gupta_CV.pdf` with the new PDF, same file name.
 - **New headshot:** replace `images/headshot.png`, then run `python3 _tools/make_assets.py`.
