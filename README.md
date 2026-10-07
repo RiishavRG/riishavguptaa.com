@@ -32,6 +32,8 @@ navigation, research identity statement, citable publications, accessibility, mo
   name in both `<summary>` lines (`<span class="sr-only">: Short name, Venue Year</span>`) so screen
   readers can tell the Abstract and BibTeX buttons apart.
 - **After a conference:** remove the `To appear` tag and add the DOI link (copy the MobiSys entry).
+  Paper links are the paper itself (DOI/PDF), code, data, video or slides; don't link the conference homepage.
+- **Separators:** write `&nbsp;·` (not ` ·`) between items on one line, so a line never starts with the dot.
 - **News:** add a `<li>` at the top of the News list; keep about 5 items, delete the oldest.
 - **Press coverage:** add a `<li>` at the top of "In the media" (under News), with the headline as the link text.
 - **CV:** replace `Rishav_Gupta_CV.pdf` with the new PDF, same file name.
