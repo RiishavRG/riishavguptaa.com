@@ -101,8 +101,8 @@
         <p class="role">Ph.D. Student in Computer Science</p>
         <p class="affil">
           <a href="https://leetton.github.io/current-members.html">Future Sensing and Interaction (FSI) Lab</a>,
-          <a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> ·
-          Baltimore, MD · Advised by <a href="https://leetton.github.io/">Dr. Dong Li</a>
+          <a href="https://www.umbc.edu">University of Maryland, Baltimore County</a>&nbsp;·
+          <span class="nowrap">Baltimore, MD</span>&nbsp;· <span class="nowrap">Advised by <a href="https://leetton.github.io/">Dr. Dong Li</a></span><!-- [L] nowrap spans: these two phrases never split across lines; &nbsp; before each "·" keeps the dot at a line END, never at a line start -->
         </p>
         <!-- Research identity statement: AREA -> PROBLEM -> APPROACH -> OUTCOME in one sentence (slide 13) -->
         <p class="identity">
@@ -116,7 +116,7 @@
         <!-- Profiles: the website is the hub that cross-links everything else (slides 5, 17). Every icon has a text label (slide 24). -->
         <ul class="chips">
           <li><a href="mailto:rishavg1@umbc.edu"><i class="fa-solid fa-envelope" aria-hidden="true"></i>rishavg1@umbc.edu</a></li>
-          <li><a href="Rishav_Gupta_CV.pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>CV (PDF)</a></li>
+          <!-- [L] no CV chip here, not a duplicate of the menu's "CV (PDF)" just above: 5 chips needed 824 px in a 696 px column, so "LinkedIn" wrapped alone onto a second row -->
           <li><a href="https://scholar.google.com/citations?user=S7ptSVcAAAAJ&amp;hl=en"><i class="fa-brands fa-google-scholar" aria-hidden="true"></i>Google Scholar</a></li>
           <li><a href="https://github.com/RiishavRG"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/riishavrg/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
@@ -130,8 +130,9 @@
   <!-- ========== ABOUT: a short, human, professional bio (slides 11, 21) ========== -->
   <section class="section" id="about" aria-labelledby="about-h">
     <span id="bio"></span><!-- [L] keeps the old #bio link working (slide 30: stable URLs) -->
-    <div class="wrap">
+    <div class="wrap split"><!-- [L] .split: on desktop, heading in the left column (lined up with the photo), content in the right column (lined up with the hero text) -->
       <h2 id="about-h">About</h2>
+      <div class="section-body"><!-- [L] one wrapper for everything under the heading, so the grid needs only 2 cells, however many paragraphs or lists the section has -->
       <div class="measure">
         <p>
           I'm a Ph.D. student in Computer Science at the University of Maryland, Baltimore County (UMBC),
@@ -147,13 +148,15 @@
         </p>
         <p class="lead">You may also find my work published under the name <strong>Riishav Guptaa</strong>.</p><!-- [L] the ACM record uses this spelling, so searchers can connect the two (slide 15: discoverable) -->
       </div>
+      </div>
     </div>
   </section>
 
   <!-- ========== RESEARCH: frame the through-line, highlight selectively, real research visuals (slides 6, 12, 21) ========== -->
   <section class="section" id="research" aria-labelledby="research-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="research-h">Research</h2>
+      <div class="section-body">
       <p class="lead measure">
         One idea connects my projects: a phone's speaker and microphone can work as an
         ultrasonic sensor, with no extra hardware.
@@ -220,13 +223,15 @@
         I work with Dr. Dong Li at UMBC and with collaborators at UMass Amherst, Nanyang Technological
         University, Indiana University, and Amazon.
       </p>
+      </div>
     </div>
   </section>
 
   <!-- ========== PUBLICATIONS: full citation, type, abstract, BibTeX, links; reverse chronological (slides 14-15) ========== -->
   <section class="section" id="publications" aria-labelledby="pubs-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="pubs-h">Publications</h2>
+      <div class="section-body">
       <ol class="pubs" reversed><!-- [L] <ol reversed>: an ordered list counting down, newest first -->
 
         <!-- MobiCom '26 WiP (first author) -->
@@ -234,11 +239,8 @@
           <p class="pub-tags"><span class="tag">Work in progress</span><span class="tag tag-appear">To appear</span></p>
           <h3>Smartphone-based Acoustic Tissue Characterization for Personalized Body-contact Systems</h3>
           <p class="authors"><span class="me">Rishav Gupta</span>, Alyssa N. Maguina, Sithumina Weerarathna, Janelle P. Clark, Dong Li</p>
-          <p class="venue"><cite>ACM MobiCom 2026</cite> · 32nd International Conference on Mobile Computing and Networking, work-in-progress track · Austin, TX</p>
-          <!-- After the conference: add the DOI link here, as on the MobiSys entry, and remove "To appear". -->
-          <ul class="pub-links">
-            <li><a href="https://www.sigmobile.org/mobicom/2026/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>MobiCom 2026 conference site</a></li>
-          </ul>
+          <p class="venue"><cite>ACM MobiCom 2026</cite>&nbsp;· 32nd International Conference on Mobile Computing and Networking, work-in-progress track&nbsp;· Austin, TX</p>
+          <!-- After the conference: add a <ul class="pub-links"> with the DOI link (copy the MobiSys entry) and remove "To appear". No venue-homepage links: they are not paper links (slide 14) and they expire after the event (slide 29). -->
           <details>
             <summary>Abstract<span class="sr-only">: acoustic tissue characterization, MobiCom 2026</span></summary><!-- [L] sr-only paper name: a screen reader hears "Abstract: acoustic tissue characterization", not four identical "Abstract" buttons (slide 28: controls must be descriptive); hidden visually so the page stays uncluttered -->
             <div><p>
@@ -281,10 +283,9 @@
           <p class="pub-tags"><span class="tag">Demo</span><span class="tag tag-appear">To appear</span></p>
           <h3>Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</h3>
           <p class="authors"><span class="me">Rishav Gupta</span>, Shirui Cao, Jie Xiong, Sunghoon Ivan Lee, Jeremy Gummeson, Dong Li</p>
-          <p class="venue"><cite>ACM MobiCom 2026</cite> · 32nd International Conference on Mobile Computing and Networking, demo track · Austin, TX</p>
+          <p class="venue"><cite>ACM MobiCom 2026</cite>&nbsp;· 32nd International Conference on Mobile Computing and Networking, demo track&nbsp;· Austin, TX</p>
           <ul class="pub-links">
             <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Phonotonos code on GitHub</a></li>
-            <li><a href="https://www.sigmobile.org/mobicom/2026/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>MobiCom 2026 conference site</a></li>
           </ul>
           <details>
             <summary>Abstract<span class="sr-only">: Phonotonos demo, MobiCom 2026</span></summary>
@@ -328,10 +329,7 @@
           <p class="pub-tags"><span class="tag">Workshop</span><span class="tag tag-appear">To appear</span></p>
           <h3>Ultrasound Watermark: Real-time Acoustic Watermarking against Voice Scams on Smartphones</h3>
           <p class="authors">Renzhi Hao, Shirui Cao, Yizhu Wen, <span class="me">Rishav Gupta</span>, Dharani Nadendla, Mehran Kafai, Hanqing Guo, Dong Li</p>
-          <p class="venue"><cite>ACM/IEEE EdgeSP 2026</cite> · 9th Workshop on Security and Privacy in Edge Computing, co-located with ACM/IEEE SEC 2026 · Santa Clara, CA</p>
-          <ul class="pub-links">
-            <li><a href="https://acm-ieee-sec.org/2026/edgesp.php"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>EdgeSP 2026 workshop site</a></li>
-          </ul>
+          <p class="venue"><cite>ACM/IEEE EdgeSP 2026</cite>&nbsp;· 9th Workshop on Security and Privacy in Edge Computing, co-located with ACM/IEEE SEC 2026&nbsp;· Santa Clara, CA</p>
           <details>
             <summary>Abstract (excerpt)<span class="sr-only">: Ultrasound Watermark, EdgeSP 2026</span></summary><!-- [L] "excerpt": only the first sentences were available; replace with the full abstract when you have it -->
             <div><p>
@@ -372,7 +370,7 @@
           <p class="pub-tags"><span class="tag">Conference</span><span class="tag">Emerging Ideas</span></p>
           <h3>Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</h3>
           <p class="authors">Shirui Cao, Jie Xiong, <span class="me">Riishav Guptaa</span>, Sunghoon Ivan Lee, Jeremy Gummeson, Dong Li</p>
-          <p class="venue"><cite>ACM MobiSys 2026</cite> · Proceedings of the 24th Annual International Conference on Mobile Systems, Applications and Services, pp. 911–927</p>
+          <p class="venue"><cite>ACM MobiSys 2026</cite>&nbsp;· Proceedings of the 24th Annual International Conference on Mobile Systems, Applications and Services, pp. 911–927</p>
           <ul class="pub-links">
             <li><a href="https://doi.org/10.1145/3745756.3809246"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Read the paper (DOI 10.1145/3745756.3809246)</a></li><!-- [L] doi.org link, not the ACM URL: a DOI is a stable identifier that keeps working if ACM reorganizes (slide 19) -->
             <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Code and sample data on GitHub</a></li>
@@ -418,13 +416,15 @@
           </details>
         </li>
       </ol>
+      </div>
     </div>
   </section>
 
   <!-- ========== NEWS: dated, newest first; kept short so it can't go stale quietly (slide 29) ========== -->
   <section class="section" id="news" aria-labelledby="news-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="news-h">News</h2>
+      <div class="section-body">
       <div class="news-grid"><!-- [L] one grid around both lists: News and In the media share a single date column, so their text starts at the same x -->
       <ul class="news">
         <li><time datetime="2026-07">Jul 2026</time><span>Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong> in the UMBC Graduate Student Association for 2026–2027.</span></li><!-- [L] <time datetime>: a machine-readable date beside the human one -->
@@ -440,18 +440,20 @@
         <li><time datetime="2026-08-18">Aug 2026</time><span>UMBC News: <a href="https://umbc.edu/stories/dong-li-affordable-health-monitoring-tech/">“Could a smartphone take the place of expensive medical equipment? Dong Li investigates how to make affordable health monitoring accessible”</a></span></li><!-- [L] same .news layout as above: dates line up, no new styles to maintain -->
       </ul>
       </div>
+      </div>
     </div>
   </section>
 
   <!-- ========== EXPERIENCE: what have you already done? (slide 7, recruiters) ========== -->
   <section class="section" id="experience" aria-labelledby="exp-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="exp-h">Experience</h2>
+      <div class="section-body">
       <ul class="entries"><!-- [L] no decorative icons beside entries: they were "mystery icons" (slide 24) -->
         <li class="entry">
           <div>
             <p class="entry-title">Graduate Research Assistant</p>
-            <p class="entry-sub"><a href="https://leetton.github.io/current-members.html">Future Sensing and Interaction (FSI) Lab</a>, UMBC · Baltimore, MD</p>
+            <p class="entry-sub"><a href="https://leetton.github.io/current-members.html">Future Sensing and Interaction (FSI) Lab</a>, UMBC&nbsp;· Baltimore, MD</p>
             <p class="entry-note">Smartphone ultrasound sensing for cardiovascular health (see <a href="#research">Research</a>).</p>
           </div>
           <p class="entry-when">Jun 2025 – Present</p>
@@ -459,7 +461,7 @@
         <li class="entry">
           <div>
             <p class="entry-title">Senior iOS Engineer</p>
-            <p class="entry-sub"><a href="https://www.gojek.com">Gojek (GoTo Group)</a> · Bengaluru, India</p>
+            <p class="entry-sub"><a href="https://www.gojek.com">Gojek (GoTo Group)</a>&nbsp;· Bengaluru, India</p>
             <p class="entry-note">Built in-house analytics tooling to replace a third-party SDK, and automated the bi-weekly iOS release pipeline.</p>
           </div>
           <p class="entry-when">Feb 2022 – Sep 2024</p>
@@ -467,7 +469,7 @@
         <li class="entry">
           <div>
             <p class="entry-title">Senior iOS Developer &amp; Team Lead</p>
-            <p class="entry-sub"><a href="https://www.gonuclei.com">Nuclei</a> · Bengaluru, India</p>
+            <p class="entry-sub"><a href="https://www.gonuclei.com">Nuclei</a>&nbsp;· Bengaluru, India</p>
             <p class="entry-note">Founding iOS developer of FedMobile for Federal Bank; promoted to lead a team of four iOS developers.</p>
           </div>
           <p class="entry-when">Jul 2019 – Feb 2022</p>
@@ -475,61 +477,65 @@
         <li class="entry">
           <div>
             <p class="entry-title">Android Developer Intern</p>
-            <p class="entry-sub"><a href="https://hera.ba/en/">Hera doo</a> · Mostar, Bosnia and Herzegovina</p>
+            <p class="entry-sub"><a href="https://hera.ba/en/">Hera doo</a>&nbsp;· Mostar, Bosnia and Herzegovina</p>
             <p class="entry-note">Built an end-to-end Android sales-order application.</p>
           </div>
           <p class="entry-when">Jun – Jul 2018</p>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- ========== EDUCATION ========== -->
   <section class="section" id="education" aria-labelledby="edu-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="edu-h">Education</h2>
+      <div class="section-body">
       <ul class="entries">
         <li class="entry">
           <div>
             <p class="entry-title">Ph.D., Computer Science</p>
-            <p class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> · Advisor: Dr. Dong Li</p>
+            <p class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a>&nbsp;· Advisor: Dr. Dong Li</p>
           </div>
           <p class="entry-when">Jan 2026 – Present</p>
         </li>
         <li class="entry">
           <div>
             <p class="entry-title">M.S., Computer Science</p>
-            <p class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> · GPA 4.00/4.00</p>
+            <p class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a>&nbsp;· GPA 4.00/4.00</p>
           </div>
           <p class="entry-when">Jan 2025 – Dec 2025</p>
         </li>
         <li class="entry">
           <div>
             <p class="entry-title">B.Tech., Information Technology</p>
-            <p class="entry-sub"><a href="https://www.manipal.edu/mit.html">Manipal Institute of Technology</a> · Ranked 8th of 132</p>
+            <p class="entry-sub"><a href="https://www.manipal.edu/mit.html">Manipal Institute of Technology</a>&nbsp;· Ranked 8th of 132</p>
           </div>
           <p class="entry-when">Jun 2015 – May 2019</p>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- ========== HONORS & AWARDS ========== -->
   <section class="section" id="awards" aria-labelledby="awards-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="awards-h">Honors &amp; Awards</h2>
+      <div class="section-body">
       <ul class="entries">
         <li class="entry">
           <div>
             <p class="entry-title">Computing for Social Good Special Award</p>
-            <p class="entry-sub"><a href="https://coeit.umbc.edu/coeit-research-day/">COEIT Research Day, UMBC</a> · 1 of 2 awards across 114 posters</p>
+            <p class="entry-sub"><a href="https://coeit.umbc.edu/coeit-research-day/">COEIT Research Day, UMBC</a>&nbsp;· 1 of 2 awards across 114 posters</p>
           </div>
           <p class="entry-when">May 2026</p>
         </li>
         <li class="entry">
           <div>
             <p class="entry-title">1st Place, Maryland NEW VENTURE™ Program Pitch Night</p>
-            <p class="entry-sub"><a href="https://bwtech.umbc.edu/programs/maryland-new-venture/">bwtech@UMBC</a> · for <em>PocketCardio</em></p>
+            <p class="entry-sub"><a href="https://bwtech.umbc.edu/programs/maryland-new-venture/">bwtech@UMBC</a>&nbsp;· for <em>PocketCardio</em></p>
           </div>
           <p class="entry-when">May 2026</p>
         </li>
@@ -548,13 +554,15 @@
           <p class="entry-when">May 2025</p>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- ========== SERVICE & LEADERSHIP ========== -->
   <section class="section" id="service" aria-labelledby="service-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="service-h">Service &amp; Leadership</h2>
+      <div class="section-body">
       <ul class="entries">
         <li class="entry">
           <div>
@@ -585,13 +593,15 @@
           <p class="entry-when">2016 – 2017</p>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- ========== CONTACT: how do I reach you? where are you? (slides 9, 11, 30) ========== -->
   <section class="section" id="contact" aria-labelledby="contact-h">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="contact-h">Contact</h2>
+      <div class="section-body">
       <div class="contact-grid">
         <div>
           <h3>Email</h3>
@@ -612,6 +622,7 @@
           </ul>
         </div>
       </div>
+      </div>
     </div>
   </section>
 
@@ -619,7 +630,7 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>© 2026 Rishav Gupta · Last updated October 2026</p><!-- [L] visible date: readers can judge freshness (slide 29) -->
+    <p>© 2026 Rishav Gupta&nbsp;· Last updated October 2026</p><!-- [L] visible date: readers can judge freshness (slide 29) -->
     <p>Hand-written HTML &amp; CSS, hosted on GitHub Pages</p>
   </div>
 </footer>

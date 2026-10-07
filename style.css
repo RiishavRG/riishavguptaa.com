@@ -23,6 +23,11 @@
   --radius: 12px;      /* [L] one corner radius for every card */
   --tap: 44px;         /* [L] minimum touch-target height: Apple/WCAG guidance for fingers on phones */
   --header-h: 4rem;    /* [L] sticky header height, reused to offset anchor jumps */
+
+  /* Page grid (desktop): left column = photo, name, section headings; right column = all content */
+  --gutter: 13.5rem;   /* [L] 216 px = the photo's width, so headings line up under the photo */
+  --gutter-gap: clamp(1.5rem, 4vw, 3rem);  /* [L] ONE gap expression for hero, header and sections, so their content columns start at the same x at every width */
+  --date-col: 10.25rem; /* [L] 164 px: the longest date ("Feb 2022 – Sep 2024") measures 156 px in Inter; 8 px spare in case a wider fallback font loads. Shared by News and all dated lists */
 }
 
 /* ===================================================== 2. Base */
@@ -60,6 +65,7 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 img { max-width: 100%; height: auto; display: block; }   /* [L] images never wider than their column */
+.nowrap { white-space: nowrap; }         /* [L] keeps a short phrase ("Baltimore, MD") on one line; only for phrases short enough to fit a 320 px phone */
 
 .sr-only {                               /* [L] visible to screen readers only, e.g. the "Copied" announcement */
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -74,7 +80,7 @@ img { max-width: 100%; height: auto; display: block; }   /* [L] images never wid
 
 .wrap {
   width: 100%;
-  max-width: 64rem;                      /* [L] 1024 px cap: lines stay readable on wide Mac displays */
+  max-width: 70rem;                      /* [L] 1120 px cap, not 1024: with the heading column, text still stays ~88 characters per line, and research cards get ~460 px of text instead of ~380 */
   margin: 0 auto;
   padding-inline: clamp(1rem, 4vw, 2rem);  /* [L] clamp(min, preferred, max): 16 px gutters on phones growing to 32 px */
 }
@@ -109,13 +115,13 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
 .hero { background: var(--paper); border-bottom: 1px solid var(--line); }
 .hero .wrap {
   display: grid;
-  grid-template-columns: 13.5rem 1fr;    /* [L] photo column 216 px, text takes the rest */
-  gap: var(--s6) clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: var(--gutter) minmax(0, 1fr);  /* [L] photo in the page's left column, text in its content column; minmax(0,...) lets long words wrap instead of widening the grid */
+  gap: var(--s6) var(--gutter-gap);      /* [L] the same column gap as every section, so hero text and section text start at one x */
   align-items: center;
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
 }
 .hero-photo {
-  width: 13.5rem; aspect-ratio: 1;       /* [L] aspect-ratio 1 = always a perfect square, so the circle never squashes */
+  width: var(--gutter); aspect-ratio: 1; /* [L] exactly the left column's width; aspect-ratio 1 = always a perfect square, so the circle never squashes */
   border-radius: 50%; object-fit: cover;
   box-shadow: 0 0 0 6px #fff, 0 0 0 7px var(--line);  /* [L] soft white ring replaces the old heavy black one */
 }
@@ -128,9 +134,8 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
   border-left: 4px solid var(--accent);  /* [L] accent bar marks the one-sentence research identity (slide 13) */
   padding-left: var(--s4);
   margin: 0 0 var(--s4);                 /* [L] 16 px, down from 24: the interests line now sits between this and the chips */
-  max-width: 44rem;
-}
-.interests { margin: 0 0 var(--s5); color: var(--ink-2); max-width: 44rem; }  /* [L] secondary grey (8.8:1), so the identity sentence stays the first thing read */
+}                                        /* [L] no max-width: it now ends at the same right edge as every section (the column is at most ~760 px, ~75 characters) */
+.interests { margin: 0 0 var(--s5); color: var(--ink-2); }  /* [L] secondary grey (8.8:1), so the identity sentence stays the first thing read */
 .interests strong { color: var(--ink); font-weight: 600; }
 .chips { display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
 .chips a {
@@ -218,7 +223,7 @@ details pre {
 /* ===================================================== 8. News (dates aligned) */
 .news-grid {
   display: grid;
-  grid-template-columns: max-content 1fr;  /* [L] column 1 = width of the widest date in BOTH lists, so every sentence starts at the same x */
+  grid-template-columns: var(--date-col) minmax(0, 1fr);  /* [L] the shared date column, not max-content: News text now starts at the same x as the Experience/Education/Awards/Service titles below it */
   column-gap: var(--s4);
 }
 .news {
@@ -230,6 +235,7 @@ details pre {
 .news-grid > .news-sub { grid-column: 1 / -1; }  /* [L] the "In the media" heading takes a full row */
 .news li { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; }  /* [L] subgrid: every row shares the list's two columns */
 .news time {
+  justify-self: start;                   /* [L] pill keeps its own width inside the wider shared date column, not stretched to 156 px */
   font-size: .875rem; font-weight: 600; text-align: center; white-space: nowrap;
   color: var(--accent); background: var(--accent-soft);
   border-radius: 999px; padding: .1rem .7rem;
@@ -238,16 +244,17 @@ details pre {
 
 /* ===================================================== 9. Experience, education, awards, service */
 .entries { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s5); }
-.entry { display: grid; grid-template-columns: 1fr auto; gap: 0 var(--s5); }   /* [L] text left, dates right on wide screens */
+.entry { display: grid; grid-template-columns: var(--date-col) minmax(0, 1fr); gap: 0 var(--s4); align-items: baseline; }   /* [L] baseline, not start: the 15 px date sits on the same text line as the 17 px title. Date column on the LEFT, not right-aligned: the date sits 16 px from its title instead of 400+ px away across empty space */
+.entry > div { grid-column: 2; }        /* [L] title, place and note in the content column */
 .entry-title { font-weight: 600; margin: 0; }
 .entry-sub { color: var(--ink-2); margin: 0; }
 .entry-note { color: var(--ink-2); margin: var(--s1) 0 0; }
-.entry-when { color: var(--ink-3); font-size: .9375rem; white-space: nowrap; text-align: right; margin: 0; }
+.entry-when { grid-column: 1; grid-row: 1; color: var(--ink-3); font-size: .9375rem; font-weight: 500; white-space: nowrap; margin: 0; }  /* [L] grid-row 1 = level with the title although it comes after it in the HTML (screen readers still hear title first) */
 .subsection + .subsection { margin-top: var(--s7); }
 .subsection h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: var(--s4); }
 
 /* ===================================================== 10. Contact and footer */
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--s5); }  /* [L] 2-3 columns on desktop, 1 on phones, no breakpoint needed */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: var(--s5); }  /* [L] 13rem, not 16: three columns still fit in the narrower desktop content column (3 x 208 px + gaps = 672 px); 1 column on phones, no breakpoint needed */
 .contact-grid h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); margin-bottom: var(--s2); }
 .plain-list { list-style: none; margin: 0; padding: 0; }
 .plain-list li { min-height: var(--tap); display: flex; align-items: center; }
@@ -256,6 +263,17 @@ details pre {
 .site-footer { border-top: 1px solid var(--line); background: var(--paper); color: var(--ink-3); font-size: .9375rem; }
 .site-footer .wrap { padding-block: var(--s5); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2) var(--s5); }
 .site-footer p { margin: 0; }
+
+/* ===================================================== 10b. Desktop page grid (960 px and wider) */
+@media (min-width: 960px) {                     /* [L] 960 px, not 760: below this a 216 px heading column leaves the content too narrow */
+  .site-header .wrap { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); column-gap: var(--gutter-gap); }  /* [L] name over the photo/heading column, menu over the content column */
+  .nav ul { margin-left: calc(-1 * var(--s3)); }  /* [L] cancels the first link's 12 px padding, so "About" starts exactly at the content edge */
+  .split { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); column-gap: var(--gutter-gap); align-items: start; }  /* [L] heading | content, the same two columns as the hero */
+  .split > h2 { font-size: 1.75rem; margin-bottom: 0; }  /* [L] 28 px, not 32: "Publications" fits the 216 px column on one line; no bottom margin because the content sits beside it, not below */
+  .split .measure { max-width: none; }          /* [L] every block ends at the column's right edge (~760 px, ~80 characters) instead of some stopping at 672 px */
+  .project { grid-template-columns: 16rem minmax(0, 1fr); }  /* [L] 256 px figure beside ~460 px of text */
+  .project-figure { aspect-ratio: 4 / 3; }      /* [L] 4:3 (256 x 192), not 16:10 (256 x 160): two of the three figures are near-square, so they fill more of the frame and the blank strip under the figure shrinks */
+}
 
 /* ===================================================== 11. Tablets and phones */
 @media (max-width: 900px) {                     /* [L] 900 px, not 760: on tablets a 288 px figure left only ~340 px for the card text */
@@ -274,8 +292,8 @@ details pre {
   .pub { padding: var(--s4); }
 }
 @media (max-width: 520px) {                     /* [L] 520 px: phone portrait */
-  .entry { grid-template-columns: 1fr; }        /* [L] dates move under the title instead of squeezing it */
-  .entry-when { text-align: left; order: 3; }
+  .entry { grid-template-columns: 1fr; }        /* [L] one column on phones */
+  .entry > div { grid-column: 1; grid-row: 2; } /* [L] date above the title, the same order as News on phones */
   .news-grid { grid-template-columns: 1fr; }    /* [L] date above its sentence: too narrow for two columns (the lists and rows inherit this one column) */
   .news li { grid-template-columns: 1fr; row-gap: var(--s1); }
   .news time { justify-self: start; }
