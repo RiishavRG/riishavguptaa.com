@@ -189,7 +189,6 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
   background: var(--paper); color: var(--ink-2); border: 1px solid var(--line);
 }
 .tag-appear { background: var(--appear-bg); color: var(--appear-ink); border-color: var(--appear-line); }
-.tag abbr[title] { text-decoration: none; cursor: help; }  /* [L] no dotted underline inside a pill (browsers add one to <abbr title>); the help cursor still hints the full form on hover */
 .pub h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--s2); }
 .authors { margin: 0 0 var(--s1); color: var(--ink-2); }
 .authors .me { color: var(--ink); font-weight: 600; }   /* [L] your name in bold, as on the CV */
