@@ -43,6 +43,9 @@ navigation, research identity statement, citable publications, accessibility, mo
 - **New headshot:** replace `images/headshot.png`, then run `python3 _tools/make_assets.py`.
 - **ORCID:** once you have an iD, uncomment the two ORCID lines in `index.html` (hero and Contact).
 - **Always:** change "Last updated" in the footer and `<lastmod>` in `sitemap.xml`.
+- **After any edit to `style.css`:** run `python3 _tools/stamp_css.py`. It updates the `?v=` fingerprint on the
+  stylesheet link, so visitors never get the new page with an old cached stylesheet (browsers keep it 10 minutes).
+  `check_site.mjs` fails if you forget.
 
 ## 15-minute check, 2–4 times a year (January, May, August, December)
 

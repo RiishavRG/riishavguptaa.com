@@ -146,6 +146,15 @@ async function main() {
   });
   for (const [k, v] of Object.entries(meta)) console.log(`  ${v ? 'PASS' : 'MISSING'}  ${k}: ${Array.isArray(v) ? v.join(', ') : v}`);
 
+  // Check 6: the stylesheet link carries the CURRENT fingerprint of style.css (stale-cache protection; see stamp_css.py)
+  console.log('\n== 6. Stylesheet fingerprint (cache busting) ==');
+  const { createHash } = await import('node:crypto');                    // [L] same SHA-256 as stamp_css.py, so both agree on the value
+  const want = createHash('sha256').update(fs.readFileSync(path.resolve(here, '..', 'style.css'))).digest('hex').slice(0, 8);
+  for (const name of ['index.html', '404.html']) {                        // [L] checks the LOCAL files: this is a before-you-push test
+    const got = (fs.readFileSync(path.resolve(here, '..', name), 'utf8').match(/href="\/?style\.css\?v=([0-9a-f]+)"/) || [])[1];
+    console.log(`  ${got === want ? 'PASS' : 'FAIL'}  ${name}: ?v=${got || '(missing)'}${got === want ? '' : `  (style.css is now ${want}: run python3 _tools/stamp_css.py)`}`);
+  }
+
   await browser.close();
 }
 
