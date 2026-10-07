@@ -10,13 +10,13 @@
 <html lang="en"><!-- [L] lang="en": screen readers pick the right pronunciation -->
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- [L] no maximum-scale: visitors must stay able to pinch-zoom (slide 19) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- [L] no maximum-scale: visitors must stay able to pinch-zoom (slide 25) -->
   <title>Rishav Gupta · Ph.D. Student, UMBC · Smartphone Health Sensing</title><!-- [L] name first, then role and topic: what appears in the browser tab and Google result -->
   <meta name="description" content="Rishav Gupta is a Ph.D. student in Computer Science at UMBC who turns everyday smartphones into cardiovascular sensors, sending ultrasound through the skin with only the phone's own speaker and microphone." /><!-- [L] the snippet search engines show under the title -->
   <link rel="canonical" href="https://riishavguptaa.com/" /><!-- [L] one official URL, so search engines don't split ranking between www / http variants -->
   <meta name="theme-color" content="#b5470b" /><!-- [L] tints the browser bar on phones in the site's accent -->
 
-  <!-- Social / search preview (slide 26: check the social preview) -->
+  <!-- Social / search preview (slide 34: check the social preview) -->
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Rishav Gupta · Ph.D. Student, UMBC" />
   <meta property="og:description" content="Turning everyday smartphones into cardiovascular sensors, using only the phone's own speaker and microphone." />
@@ -29,19 +29,19 @@
   <meta property="profile:last_name" content="Gupta" />
   <meta name="twitter:card" content="summary_large_image" /><!-- [L] X/Twitter shows the full-width card, not a small square -->
 
-  <!-- Icons (slide 26: check the page icons) -->
+  <!-- Icons (slide 34: check the page icons) -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" /><!-- [L] SVG first: crisp at any size in modern browsers -->
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" /><!-- [L] PNG fallback for older browsers -->
   <link rel="apple-touch-icon" href="apple-touch-icon.png" /><!-- [L] icon when saved to an iPhone home screen -->
 
-  <!-- Fonts: 2 typefaces only (slide 17) -->
+  <!-- Fonts: 2 typefaces only (slides 23-24) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" /><!-- [L] preconnect: opens the font server connection early, so text styles sooner -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" /><!-- [L] display=swap: show fallback text immediately, never invisible text while fonts load -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /><!-- [L] versioned CDN URL (6.5.0), not "latest": icons can't change under you -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Structured data: tells search engines both names are one person (stable identity, slides 14-15) -->
+  <!-- Structured data: tells search engines both names are one person (stable identity, slides 17-20) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,14 +63,14 @@
   }
   </script>
 </head>
-<body>
+<body id="top"><!-- [L] id="top": target for the name link in the header ("back to top") -->
 
-<a class="skip-link" href="#main">Skip to main content</a><!-- [L] first Tab stop for keyboard users (slide 26: tab through every element) -->
+<a class="skip-link" href="#main">Skip to main content</a><!-- [L] first Tab stop for keyboard users (slide 34: tab through every element) -->
 
-<!-- ========== HEADER: conventional labels, no hover-only menus (slides 8, 21) ========== -->
+<!-- ========== HEADER: conventional labels, no hover-only menus (slides 10, 28) ========== -->
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#main">Rishav Gupta</a>
+    <a class="brand" href="#top">Rishav Gupta</a><!-- [L] #top, not #main: two adjacent links to the same place are redundant for keyboard and screen-reader users (WAVE alert); the skip link already goes to #main -->
     <nav class="nav" aria-label="Main"><!-- [L] aria-label names this landmark for screen-reader users -->
       <ul>
         <li><a href="#about">About</a></li>
@@ -78,7 +78,7 @@
         <li><a href="#publications">Publications</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="Rishav_Gupta_CV.pdf">CV (PDF)</a></li><!-- [L] same file path as always, so old links to the CV keep working (slide 23) -->
+        <li><a href="Rishav_Gupta_CV.pdf">CV (PDF)</a></li><!-- [L] same file path as always, so old links to the CV keep working (slide 30) -->
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -87,7 +87,7 @@
 
 <main id="main">
 
-  <!-- ========== HERO: who / what / why / where / how to reach, within 10 seconds (slides 7, 9, 27) ========== -->
+  <!-- ========== HERO: who / what / why / where / how to reach, within 10 seconds (slides 9, 11, 35) ========== -->
   <section class="hero" aria-labelledby="name">
     <div class="wrap">
       <img class="hero-photo"
@@ -104,30 +104,32 @@
           <a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> ·
           Baltimore, MD · Advised by <a href="https://leetton.github.io/">Dr. Dong Li</a>
         </p>
-        <!-- Research identity statement: AREA -> PROBLEM -> APPROACH -> OUTCOME in one sentence (slide 11) -->
+        <!-- Research identity statement: AREA -> PROBLEM -> APPROACH -> OUTCOME in one sentence (slide 13) -->
         <p class="identity">
           I turn everyday smartphones into cardiovascular sensors: by sending ultrasound
           through the skin with only the phone's own speaker and microphone, I measure
           blood flow and tissue properties so that vascular screening can happen
           anywhere, not just in a clinic.
         </p>
-        <!-- Profiles: the website is the hub that cross-links everything else (slides 3, 14). Every icon has a text label (slide 18). -->
+        <!-- Research interests, worded like the CV and Google Scholar so all three agree (slides 11, 29, 35) -->
+        <p class="interests"><strong>Research interests:</strong> mobile health sensing, acoustic and ultrasonic sensing, digital signal processing, and machine learning for cardiovascular monitoring.</p><!-- [L] a comma sentence, not "·"-separated tags: screen readers read it naturally instead of saying "dot" between items -->
+        <!-- Profiles: the website is the hub that cross-links everything else (slides 5, 17). Every icon has a text label (slide 24). -->
         <ul class="chips">
           <li><a href="mailto:rishavg1@umbc.edu"><i class="fa-solid fa-envelope" aria-hidden="true"></i>rishavg1@umbc.edu</a></li>
           <li><a href="Rishav_Gupta_CV.pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>CV (PDF)</a></li>
           <li><a href="https://scholar.google.com/citations?user=S7ptSVcAAAAJ&amp;hl=en"><i class="fa-brands fa-google-scholar" aria-hidden="true"></i>Google Scholar</a></li>
           <li><a href="https://github.com/RiishavRG"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/riishavrg/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
-          <!-- ORCID (slides 3, 15): once you have an iD from orcid.org, uncomment and paste it here and in the Contact section:
+          <!-- ORCID (slides 5, 18): once you have an iD from orcid.org, uncomment and paste it here and in the Contact section:
           <li><a href="https://orcid.org/0000-0000-0000-0000"><i class="fa-brands fa-orcid" aria-hidden="true"></i>ORCID</a></li> -->
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- ========== ABOUT: a short, human, professional bio (slides 9, 16) ========== -->
+  <!-- ========== ABOUT: a short, human, professional bio (slides 11, 21) ========== -->
   <section class="section" id="about" aria-labelledby="about-h">
-    <span id="bio"></span><!-- [L] keeps the old #bio link working (slide 23: stable URLs) -->
+    <span id="bio"></span><!-- [L] keeps the old #bio link working (slide 30: stable URLs) -->
     <div class="wrap">
       <h2 id="about-h">About</h2>
       <div class="measure">
@@ -143,12 +145,12 @@
           mobile apps used by millions of people. I'm especially interested in research that bridges
           low-level sensing with real-world, deployable mobile systems that reach the people who need them.
         </p>
-        <p class="lead">You may also find my work published under the name <strong>Riishav Guptaa</strong>.</p><!-- [L] the ACM record uses this spelling, so searchers can connect the two (slide 13: discoverable) -->
+        <p class="lead">You may also find my work published under the name <strong>Riishav Guptaa</strong>.</p><!-- [L] the ACM record uses this spelling, so searchers can connect the two (slide 15: discoverable) -->
       </div>
     </div>
   </section>
 
-  <!-- ========== RESEARCH: frame the through-line, highlight selectively, real research visuals (slides 4, 10, 16) ========== -->
+  <!-- ========== RESEARCH: frame the through-line, highlight selectively, real research visuals (slides 6, 12, 21) ========== -->
   <section class="section" id="research" aria-labelledby="research-h">
     <div class="wrap">
       <h2 id="research-h">Research</h2>
@@ -160,7 +162,7 @@
         <li class="project">
           <figure class="project-figure">
             <img src="images/Phonotonos_Demo.jpg" width="800" height="797" loading="lazy"
-                 alt="Two screenshots of the Phonotonos app: a live blood-flow velocity trace with the signal locked, and a results screen showing heart rate and Doppler indices." /><!-- [L] loading="lazy": below-the-fold images load only when scrolled near, faster first view on phones -->
+                 alt="Phonotonos app: live blood-flow velocity trace and results with heart rate and Doppler indices" /><!-- [L] loading="lazy": below-the-fold images load only when scrolled near, faster first view on phones. Alt under 100 characters, not a full description: the card text beside it already explains the method -->
           </figure>
           <div>
             <h3>Measuring blood flow through the skin</h3>
@@ -180,7 +182,7 @@
         <li class="project">
           <figure class="project-figure">
             <img src="images/TissueCharacterization.jpg" width="801" height="738" loading="lazy"
-                 alt="Diagram comparing ultrasound elastography with smartphone acoustic sensing on the forearm; both characterize viscoelastic tissue properties that can tune exoskeletons, haptic wristbands, and prosthetics." />
+                 alt="Ultrasound elastography and smartphone acoustic sensing both measure forearm tissue properties" /><!-- [L] short alt; the paragraph next to it names the devices (wristbands, exoskeletons, prosthetics) -->
           </figure>
           <div>
             <h3>Reading tissue mechanics with sound</h3>
@@ -198,7 +200,7 @@
         <li class="project">
           <figure class="project-figure">
             <img src="images/Ultrasound_Watermark-1000.jpg" width="1000" height="489" loading="lazy"
-                 alt="Diagram: the caller's phone combines speech with an ultrasound reflection of facial motion in a watermark generator, and a detector on the callee's side checks the watermarked speech." />
+                 alt="Caller's phone watermarks speech with ultrasound-sensed face motion; the callee's phone checks it" /><!-- [L] short alt: who does what, in one line -->
           </figure>
           <div>
             <h3>Securing phone calls with ultrasound</h3>
@@ -213,7 +215,7 @@
           </div>
         </li>
       </ul>
-      <!-- Collaborators (slide 10, optional element): institution level, so it doesn't go stale when people move (slide 22) -->
+      <!-- Collaborators (slide 12, optional element): institution level, so it doesn't go stale when people move (slide 29) -->
       <p class="measure">
         I work with Dr. Dong Li at UMBC and with collaborators at UMass Amherst, Nanyang Technological
         University, Indiana University, and Amazon.
@@ -221,7 +223,7 @@
     </div>
   </section>
 
-  <!-- ========== PUBLICATIONS: full citation, type, abstract, BibTeX, links; reverse chronological (slides 12-13) ========== -->
+  <!-- ========== PUBLICATIONS: full citation, type, abstract, BibTeX, links; reverse chronological (slides 14-15) ========== -->
   <section class="section" id="publications" aria-labelledby="pubs-h">
     <div class="wrap">
       <h2 id="pubs-h">Publications</h2>
@@ -238,7 +240,7 @@
             <li><a href="https://www.sigmobile.org/mobicom/2026/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>MobiCom 2026 conference site</a></li>
           </ul>
           <details>
-            <summary>Abstract</summary>
+            <summary>Abstract<span class="sr-only">: acoustic tissue characterization, MobiCom 2026</span></summary><!-- [L] sr-only paper name: a screen reader hears "Abstract: acoustic tissue characterization", not four identical "Abstract" buttons (slide 28: controls must be descriptive); hidden visually so the page stays uncluttered -->
             <div><p>
               Interactive systems such as haptic wristbands maintain sustained body contact, but variations
               in soft tissue mechanics can cause the same force to feel different across users. Conventional
@@ -254,7 +256,7 @@
             </p></div>
           </details>
           <details>
-            <summary>BibTeX</summary>
+            <summary>BibTeX<span class="sr-only">: acoustic tissue characterization, MobiCom 2026</span></summary>
             <div>
 <pre id="bib-tissue">@inproceedings{gupta2026tissue,
   title     = {{WiP}: Smartphone-based Acoustic Tissue Characterization
@@ -285,7 +287,7 @@
             <li><a href="https://www.sigmobile.org/mobicom/2026/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>MobiCom 2026 conference site</a></li>
           </ul>
           <details>
-            <summary>Abstract</summary>
+            <summary>Abstract<span class="sr-only">: Phonotonos demo, MobiCom 2026</span></summary>
             <div><p>
               Cardiovascular diseases remain a leading cause of death worldwide, motivating accessible tools
               for vascular health monitoring. This demo presents Phonotonos, a smartphone-based system for
@@ -301,7 +303,7 @@
             </p></div>
           </details>
           <details>
-            <summary>BibTeX</summary>
+            <summary>BibTeX<span class="sr-only">: Phonotonos demo, MobiCom 2026</span></summary>
             <div>
 <pre id="bib-demo">@inproceedings{gupta2026phonotonosdemo,
   title     = {Demo: Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing
@@ -331,7 +333,7 @@
             <li><a href="https://acm-ieee-sec.org/2026/edgesp.php"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>EdgeSP 2026 workshop site</a></li>
           </ul>
           <details>
-            <summary>Abstract (excerpt)</summary><!-- [L] "excerpt": only the first sentences were available; replace with the full abstract when you have it -->
+            <summary>Abstract (excerpt)<span class="sr-only">: Ultrasound Watermark, EdgeSP 2026</span></summary><!-- [L] "excerpt": only the first sentences were available; replace with the full abstract when you have it -->
             <div><p>
               In this paper, we present Ultrasound Watermark, a real-time, smartphone-native framework for
               protecting live phone calls against voice impersonation attacks. Recent advances in text-to-speech
@@ -344,7 +346,7 @@
             </p></div>
           </details>
           <details>
-            <summary>BibTeX</summary>
+            <summary>BibTeX<span class="sr-only">: Ultrasound Watermark, EdgeSP 2026</span></summary>
             <div>
 <pre id="bib-edgesp">@inproceedings{hao2026ultrasoundwatermark,
   title     = {Ultrasound Watermark: Real-time Acoustic Watermarking
@@ -372,11 +374,11 @@
           <p class="authors">Shirui Cao, Jie Xiong, <span class="me">Riishav Guptaa</span>, Sunghoon Ivan Lee, Jeremy Gummeson, Dong Li</p>
           <p class="venue"><cite>ACM MobiSys 2026</cite> · Proceedings of the 24th Annual International Conference on Mobile Systems, Applications and Services, pp. 911–927</p>
           <ul class="pub-links">
-            <li><a href="https://doi.org/10.1145/3745756.3809246"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Read the paper (DOI 10.1145/3745756.3809246)</a></li><!-- [L] doi.org link, not the ACM URL: a DOI is a stable identifier that keeps working if ACM reorganizes (slide 15) -->
+            <li><a href="https://doi.org/10.1145/3745756.3809246"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Read the paper (DOI 10.1145/3745756.3809246)</a></li><!-- [L] doi.org link, not the ACM URL: a DOI is a stable identifier that keeps working if ACM reorganizes (slide 19) -->
             <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Code and sample data on GitHub</a></li>
           </ul>
           <details>
-            <summary>Abstract</summary>
+            <summary>Abstract<span class="sr-only">: Phonotonos, MobiSys 2026</span></summary>
             <div><p>
               Cardiovascular diseases remain the leading cause of death worldwide, and Doppler blood flow indices
               play a crucial role in their early detection and diagnosis. Existing ultrasound devices, though
@@ -395,7 +397,7 @@
             </p></div>
           </details>
           <details>
-            <summary>BibTeX</summary>
+            <summary>BibTeX<span class="sr-only">: Phonotonos, MobiSys 2026</span></summary>
             <div>
 <pre id="bib-mobisys">@inproceedings{cao2026phonotonos,
   title     = {[Emerging Ideas] Phonotonos: Through-Skin Ultrasonic
@@ -419,25 +421,33 @@
     </div>
   </section>
 
-  <!-- ========== NEWS: dated, newest first; kept short so it can't go stale quietly (slide 22) ========== -->
+  <!-- ========== NEWS: dated, newest first; kept short so it can't go stale quietly (slide 29) ========== -->
   <section class="section" id="news" aria-labelledby="news-h">
     <div class="wrap">
       <h2 id="news-h">News</h2>
+      <div class="news-grid"><!-- [L] one grid around both lists: News and In the media share a single date column, so their text starts at the same x -->
       <ul class="news">
-        <li><time datetime="2026-07">July 2026</time><span>Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong> in the UMBC Graduate Student Association for 2026–2027.</span></li><!-- [L] <time datetime>: a machine-readable date beside the human one -->
-        <li><time datetime="2026-05">May 2026</time><span>Received the <strong>Computing for Social Good Special Award</strong> at COEIT Research Day, presented by Dean Jeanne M. VanBriesen. One of only 2 awards across 114 posters.</span></li>
+        <li><time datetime="2026-07">Jul 2026</time><span>Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong> in the UMBC Graduate Student Association for 2026–2027.</span></li><!-- [L] <time datetime>: a machine-readable date beside the human one -->
+        <li><time datetime="2026-05">May 2026</time><span>Received the <strong>Computing for Social Good Special Award</strong> at COEIT Research Day, presented by Dean Jeanne M. van Briesen. One of only 2 awards across 114 posters.</span></li><!-- [L] "van Briesen", not "VanBriesen": the spelling UMBC News and the CV use (slide 29: CV and site must agree) -->
         <li><time datetime="2026-05">May 2026</time><span>PocketCardio won <strong>1st Place</strong> at the Maryland NEW VENTURE™ Program Pitch Night at bwtech@UMBC.</span></li>
-        <li><time datetime="2026-04">April 2026</time><span>Received the <strong>Best Poster Award</strong> at CSEE Research Day, UMBC.</span></li>
+        <li><time datetime="2026-04">Apr 2026</time><span>Received the <strong>Best Poster Award</strong> at CSEE Research Day, UMBC.</span></li>
         <li><time datetime="2025-05">May 2025</time><span>Received the <strong>Best Poster Award</strong> at COEIT Research Day, UMBC.</span></li>
       </ul>
+      <!-- In the media (slide 6: "host more than papers ... media"): links out to the stories, so nothing here can go stale (slide 29) -->
+      <h3 class="news-sub" id="media">In the media</h3><!-- [L] h3 under the News h2, not a new section: keeps the menu at 7 items (slide 10: conventional navigation) -->
+      <ul class="news">
+        <li><time datetime="2026-09-01">Sep 2026</time><span>UMBC News: <a href="https://umbc.edu/stories/computing-for-social-good-award/">“Calling our better angels: Computing for Social Good Award launched by alumnus Akshay Java at Google honors work prioritizing people’s well-being”</a></span></li><!-- [L] the headline as link text, not "read more": says where the link goes (slide 28: no "click here") -->
+        <li><time datetime="2026-08-18">Aug 2026</time><span>UMBC News: <a href="https://umbc.edu/stories/dong-li-affordable-health-monitoring-tech/">“Could a smartphone take the place of expensive medical equipment? Dong Li investigates how to make affordable health monitoring accessible”</a></span></li><!-- [L] same .news layout as above: dates line up, no new styles to maintain -->
+      </ul>
+      </div>
     </div>
   </section>
 
-  <!-- ========== EXPERIENCE: what have you already done? (slide 5, recruiters) ========== -->
+  <!-- ========== EXPERIENCE: what have you already done? (slide 7, recruiters) ========== -->
   <section class="section" id="experience" aria-labelledby="exp-h">
     <div class="wrap">
       <h2 id="exp-h">Experience</h2>
-      <ul class="entries"><!-- [L] no decorative icons beside entries: they were "mystery icons" (slide 18) -->
+      <ul class="entries"><!-- [L] no decorative icons beside entries: they were "mystery icons" (slide 24) -->
         <li class="entry">
           <div>
             <p class="entry-title">Graduate Research Assistant</p>
@@ -578,7 +588,7 @@
     </div>
   </section>
 
-  <!-- ========== CONTACT: how do I reach you? where are you? (slides 7, 9, 23) ========== -->
+  <!-- ========== CONTACT: how do I reach you? where are you? (slides 9, 11, 30) ========== -->
   <section class="section" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <h2 id="contact-h">Contact</h2>
@@ -609,7 +619,7 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>© 2026 Rishav Gupta · Last updated October 2026</p><!-- [L] visible date: readers can judge freshness (slide 22) -->
+    <p>© 2026 Rishav Gupta · Last updated October 2026</p><!-- [L] visible date: readers can judge freshness (slide 29) -->
     <p>Hand-written HTML &amp; CSS, hosted on GitHub Pages</p>
   </div>
 </footer>
@@ -623,6 +633,8 @@
     const status = document.getElementById('copy-status');                // [L] the hidden live region declared above
     document.querySelectorAll('.copy-btn').forEach((btn) => {             // [L] one button per BibTeX block
       btn.hidden = false;                                                 // [L] reveal only now that copying can actually work
+      const paper = btn.closest('details')?.querySelector('summary .sr-only')?.textContent || '';  // [L] reuse the toggle's hidden paper name (": Phonotonos, MobiSys 2026"); the <h3> title, not used: two papers share one title
+      btn.setAttribute('aria-label', 'Copy BibTeX' + paper);              // [L] aria-label, not a hidden <span>: the click handler below replaces the button's text, which would delete a span; the label starts with the visible words, as WCAG 2.5.3 requires
       btn.addEventListener('click', async () => {                         // [L] async: writeText returns a Promise
         const text = document.getElementById(btn.dataset.copy).textContent;  // [L] data-copy holds the id of the <pre> to copy
         try {

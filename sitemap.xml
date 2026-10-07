@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- sitemap.xml - tells search engines which pages exist and when they last changed (slide 13: discoverable).
+<!-- sitemap.xml - tells search engines which pages exist and when they last changed (slide 15: discoverable).
      Update <lastmod> whenever you update the site. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>

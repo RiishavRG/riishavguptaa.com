@@ -8,18 +8,18 @@
 :root {
   --ink:    #1d1d1f;   /* [L] body text: 16.8:1 contrast on white (WCAG AA needs 4.5:1) */
   --ink-2:  #4a4a4f;   /* [L] secondary text: 8.8:1 */
-  --ink-3:  #5c5c63;   /* [L] dates and venues: 6.6:1 -- never lighter (slide 21: avoid gray on gray) */
+  --ink-3:  #5c5c63;   /* [L] dates and venues: 6.6:1 -- never lighter (slide 28: avoid gray on gray) */
   --accent: #b5470b;   /* [L] burnt orange, kept from the old site and the photo's sunset: 5.4:1 on white */
   --accent-soft: #fff1e6;  /* [L] tint behind accent text: accent on it = 4.9:1 */
-  --link:   #1a5fb4;   /* [L] blue links, not orange: blue is what visitors expect a link to be (slide 8: obey conventions); 6.3:1 */
+  --link:   #1a5fb4;   /* [L] blue links, not orange: blue is what visitors expect a link to be (slide 10: obey conventions); 6.3:1 */
   --paper:  #faf7f4;   /* [L] warm off-white for the hero and tags: separates areas without borders everywhere */
   --line:   #e6e1dc;   /* [L] hairline borders: decorative only, so it needs no contrast ratio */
   --appear-bg: #f0f4ff; --appear-ink: #1a56c4; --appear-line: #bad0f8;  /* [L] "To appear" badge: 6.0:1, the word carries the meaning, not the colour */
 
-  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;   /* [L] typeface 1 of 2: headings and name, a little personality (slide 17) */
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;   /* [L] typeface 1 of 2: headings and name, a little personality (slide 23) */
   --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; /* [L] typeface 2 of 2: body; system fonts as fallback if Google Fonts fails */
 
-  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s5: 1.5rem; --s6: 2rem; --s7: 3rem;  /* [L] one spacing scale used everywhere = "consistent spacing" (slide 17) */
+  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s5: 1.5rem; --s6: 2rem; --s7: 3rem;  /* [L] one spacing scale used everywhere = "consistent spacing" (slide 24) */
   --radius: 12px;      /* [L] one corner radius for every card */
   --tap: 44px;         /* [L] minimum touch-target height: Apple/WCAG guidance for fingers on phones */
   --header-h: 4rem;    /* [L] sticky header height, reused to offset anchor jumps */
@@ -39,7 +39,7 @@ html {
 body {
   margin: 0;
   font-family: var(--sans);
-  font-size: 1.0625rem;                  /* [L] 17 px body, not 14-15: slide 18 "avoid tiny type" */
+  font-size: 1.0625rem;                  /* [L] 17 px body, not 14-15: slide 24 "avoid tiny type" */
   line-height: 1.65;                     /* [L] generous line height = readable paragraphs, no "wall of text" */
   color: var(--ink);
   background: #fff;
@@ -50,7 +50,7 @@ h1, h2, h3 { line-height: 1.25; margin: 0; }
 h1, h2 { font-family: var(--serif); font-weight: 700; letter-spacing: -.01em; }
 p { margin: 0 0 var(--s4); }
 
-a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .18em; }  /* [L] links stay underlined: colour alone must not carry meaning (slide 21) */
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .18em; }  /* [L] links stay underlined: colour alone must not carry meaning (slide 28) */
 a:hover { text-decoration-thickness: 2px; }
 
 :focus-visible {                         /* [L] :focus-visible, not :focus: a clear ring for keyboard users, no ring after mouse clicks */
@@ -95,7 +95,7 @@ img { max-width: 100%; height: auto; display: block; }   /* [L] images never wid
   color: var(--ink); text-decoration: none;
   display: inline-flex; align-items: center; min-height: var(--tap);
 }
-.nav ul { display: flex; flex-wrap: wrap; gap: var(--s1); list-style: none; margin: 0; padding: 0; }  /* [L] links wrap onto a second line, never hidden behind a hover menu (slide 21) */
+.nav ul { display: flex; flex-wrap: wrap; gap: var(--s1); list-style: none; margin: 0; padding: 0; }  /* [L] links wrap onto a second line, never hidden behind a hover menu (slide 28) */
 .nav a {
   display: inline-flex; align-items: center; min-height: var(--tap);
   padding: 0 var(--s3); border-radius: 8px;
@@ -125,11 +125,13 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
 .identity {
   font-size: clamp(1.075rem, 1rem + .35vw, 1.25rem);
   line-height: 1.6;
-  border-left: 4px solid var(--accent);  /* [L] accent bar marks the one-sentence research identity (slide 11) */
+  border-left: 4px solid var(--accent);  /* [L] accent bar marks the one-sentence research identity (slide 13) */
   padding-left: var(--s4);
-  margin: 0 0 var(--s5);
+  margin: 0 0 var(--s4);                 /* [L] 16 px, down from 24: the interests line now sits between this and the chips */
   max-width: 44rem;
 }
+.interests { margin: 0 0 var(--s5); color: var(--ink-2); max-width: 44rem; }  /* [L] secondary grey (8.8:1), so the identity sentence stays the first thing read */
+.interests strong { color: var(--ink); font-weight: 600; }
 .chips { display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
 .chips a {
   display: inline-flex; align-items: center; gap: var(--s2);
@@ -138,13 +140,13 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
   background: #fff; color: var(--ink); font-weight: 500; text-decoration: none;
 }
 .chips a:hover { border-color: var(--accent); color: var(--accent); }
-.chips i { color: var(--accent); width: 1.1em; text-align: center; }   /* [L] icons always sit beside a text label -- never "mystery icons" (slide 18) */
+.chips i { color: var(--accent); width: 1.1em; text-align: center; }   /* [L] icons always sit beside a text label -- never "mystery icons" (slide 24) */
 
 /* ===================================================== 5. Sections */
 .section { padding-block: clamp(2.5rem, 5vw, 3.75rem); }
 .section + .section { border-top: 1px solid var(--line); }
 .section h2 { font-size: clamp(1.6rem, 1.3rem + 1vw, 2rem); margin-bottom: var(--s5); }
-.section h2::after {                     /* [L] short accent rule under each heading: clear headings (slide 17) */
+.section h2::after {                     /* [L] short accent rule under each heading: clear headings (slide 24) */
   content: ""; display: block; width: 2.5rem; height: 3px;
   background: var(--accent); margin-top: var(--s2); border-radius: 2px;
 }
@@ -177,7 +179,7 @@ section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); } 
 .pub { padding: var(--s5); border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
 .pub-tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s2); }
 .tag {
-  font-size: .875rem; font-weight: 600;  /* [L] 14 px, up from the old 12 px badges (slide 18: tiny type) */
+  font-size: .875rem; font-weight: 600;  /* [L] 14 px, up from the old 12 px badges (slide 24: tiny type) */
   padding: .1rem .65rem; border-radius: 999px;
   background: var(--paper); color: var(--ink-2); border: 1px solid var(--line);
 }
@@ -214,18 +216,25 @@ details pre {
 .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ===================================================== 8. News (dates aligned) */
+.news-grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;  /* [L] column 1 = width of the widest date in BOTH lists, so every sentence starts at the same x */
+  column-gap: var(--s4);
+}
 .news {
   list-style: none; margin: 0; padding: 0;
-  display: grid;
-  grid-template-columns: max-content 1fr;  /* [L] column 1 = width of the widest date, so every sentence starts at the same x */
-  gap: var(--s3) var(--s4);
+  grid-column: 1 / -1;                     /* [L] each list spans both columns of .news-grid ... */
+  display: grid; grid-template-columns: subgrid;  /* [L] ... and reuses them (nested subgrid), not its own max-content: two separate grids drifted ~4 px apart */
+  row-gap: var(--s3);
 }
+.news-grid > .news-sub { grid-column: 1 / -1; }  /* [L] the "In the media" heading takes a full row */
 .news li { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; }  /* [L] subgrid: every row shares the list's two columns */
 .news time {
   font-size: .875rem; font-weight: 600; text-align: center; white-space: nowrap;
   color: var(--accent); background: var(--accent-soft);
   border-radius: 999px; padding: .1rem .7rem;
 }
+.news-sub { font-family: var(--serif); font-size: 1.35rem; margin: var(--s6) 0 var(--s4); }  /* [L] same look as other h3 sub-headings (.subsection h3): consistent headings */
 
 /* ===================================================== 9. Experience, education, awards, service */
 .entries { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s5); }
@@ -267,7 +276,7 @@ details pre {
 @media (max-width: 520px) {                     /* [L] 520 px: phone portrait */
   .entry { grid-template-columns: 1fr; }        /* [L] dates move under the title instead of squeezing it */
   .entry-when { text-align: left; order: 3; }
-  .news { grid-template-columns: 1fr; }         /* [L] date above its sentence: too narrow for two columns */
+  .news-grid { grid-template-columns: 1fr; }    /* [L] date above its sentence: too narrow for two columns (the lists and rows inherit this one column) */
   .news li { grid-template-columns: 1fr; row-gap: var(--s1); }
   .news time { justify-self: start; }
 }

@@ -19,6 +19,7 @@ const AXE_PATH = require.resolve('axe-core/axe.min.js');
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const TARGET = process.argv[2] || pathToFileURL(path.resolve(here, '..', 'index.html')).href;
 const OUT = process.argv[3] || fs.mkdtempSync(path.join(os.tmpdir(), 'site-check-'));
+fs.mkdirSync(OUT, { recursive: true });                                  // [L] create the screenshot folder if it's new; recursive: no error if it already exists
 const WIDTHS = [1440, 1024, 768, 390, 375, 320];                         // [L] desktop, laptop, tablet, iPhone 14, iPhone SE; 320 px = a 1280 px window at 400% zoom (WCAG reflow test)
 
 /** Open TARGET at a given viewport and wait for fonts, so measurements match what visitors see.
@@ -62,7 +63,7 @@ async function main() {
     await page.screenshot({ path: path.join(OUT, `layout-${label.replace(/[^0-9a-z]+/gi, '_')}.png`), fullPage: true });
   }
 
-  // Check 2: accessibility checker (slides 20, 26) -- axe-core with every <details> opened so hidden text is checked too
+  // Check 2: accessibility checker (slides 26, 34) -- axe-core with every <details> opened so hidden text is checked too
   console.log('\n== 2. Accessibility (axe-core, WCAG 2.2 A/AA + best practices) ==');
   for (const w of [1280, 375]) {                                         // [L] desktop and phone layouts can fail differently (e.g. contrast over different backgrounds)
     await open(page, w, 900);
@@ -78,7 +79,7 @@ async function main() {
     for (const v of res.incomplete) console.log(`    ? ${v.id}: ${v.help} (${v.nodes.length}x)`);
   }
 
-  // Check 3: keyboard -- Tab through every interactive element (slide 26); each must show a focus ring
+  // Check 3: keyboard -- Tab through every interactive element (slide 34); each must show a focus ring
   console.log('\n== 3. Keyboard: Tab order and visible focus ==');
   await open(page, 1280, 800);
   const seen = [];
@@ -102,7 +103,7 @@ async function main() {
   console.log('  order: ' + seen.map((f) => f.label).join(' | '));
   for (const f of noRing) console.log(`    no ring: <${f.tag}> "${f.label}"`);
 
-  // Check 4: click every important link (slide 26) -- in-page anchors, local files, and external URLs
+  // Check 4: click every important link (slide 34) -- in-page anchors, local files, and external URLs
   console.log('\n== 4. Links ==');
   await open(page, 1280, 800);
   const refs = await page.evaluate(() => [
@@ -130,7 +131,7 @@ async function main() {
     console.log(`  ${ok ? 'PASS' : 'CHECK'}  ${String(r.status).padEnd(13)} ${r.url}${r.text ? '  "' + r.text + '"' : ''}`);
   }
 
-  // Check 5: title, icons, social/search preview (slide 26)
+  // Check 5: title, icons, social/search preview (slide 34)
   console.log('\n== 5. Title, icons, preview tags ==');
   const meta = await page.evaluate(() => {
     const q = (s) => document.querySelector(s)?.getAttribute('content') || document.querySelector(s)?.getAttribute('href') || null;

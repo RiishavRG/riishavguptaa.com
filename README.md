@@ -21,20 +21,27 @@ navigation, research identity statement, citable publications, accessibility, mo
 | `images/og-card.png` | Preview image shown when the link is shared (LinkedIn, Slack, iMessage) |
 | `sitemap.xml`, `robots.txt` | Help search engines find the site |
 | `_tools/make_assets.py` | Regenerates the resized images, icons and preview card (not published: Jekyll skips `_` folders) |
+| `_tools/check_site.mjs` | Automated pre-deploy test: widths and zoom, accessibility (axe), keyboard focus, links, preview tags |
+| `_tools/site-check-reminders.ics` | Double-click to add the 15-minute check to your calendar (first Monday of Jan, May, Aug, Dec) |
 
 ## How to update
 
 - **New paper:** in `index.html`, copy one `<li class="pub">` block in the Publications section, put
   it at the top (newest first), and change the title, authors, venue, links, abstract and BibTeX.
-  Give it a new `id` (e.g. `pub-name`) and a new `data-copy`/`<pre id>` pair.
+  Give it a new `id` (e.g. `pub-name`) and a new `data-copy`/`<pre id>` pair, and change the hidden
+  name in both `<summary>` lines (`<span class="sr-only">: Short name, Venue Year</span>`) so screen
+  readers can tell the Abstract and BibTeX buttons apart.
 - **After a conference:** remove the `To appear` tag and add the DOI link (copy the MobiSys entry).
 - **News:** add a `<li>` at the top of the News list; keep about 5 items, delete the oldest.
+- **Press coverage:** add a `<li>` at the top of "In the media" (under News), with the headline as the link text.
 - **CV:** replace `Rishav_Gupta_CV.pdf` with the new PDF, same file name.
 - **New headshot:** replace `images/headshot.png`, then run `python3 _tools/make_assets.py`.
 - **ORCID:** once you have an iD, uncomment the two ORCID lines in `index.html` (hero and Contact).
 - **Always:** change "Last updated" in the footer and `<lastmod>` in `sitemap.xml`.
 
 ## 15-minute check, 2–4 times a year (January, May, August, December)
+
+Calendar reminder: open `_tools/site-check-reminders.ics` once to import it.
 
 - [ ] Nothing stale: no "N-th year" claims, News has something from the last ~6 months, footer date is current
 - [ ] The CV PDF and the site agree (publications, positions, dates)
