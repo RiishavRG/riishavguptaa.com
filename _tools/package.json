@@ -1,0 +1,10 @@
+{
+  "name": "riishavguptaa-site-tools",
+  "private": true,
+  "description": "Local checks for the website: run `node check_site.mjs` from this folder after `npm install`.",
+  "type": "module",
+  "dependencies": {
+    "axe-core": "^4.14.0",
+    "puppeteer-core": "^25.12.0"
+  }
+}

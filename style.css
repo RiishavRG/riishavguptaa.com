@@ -1,554 +1,281 @@
-/* ==========================================================================
-   style.css — Rishav Gupta personal academic website
-   Design inspired by Chelsea Finn (ai.stanford.edu/~cbfinn/)
-   ========================================================================== */
+/* style.css -- all styling for riishavguptaa.com (index.html and 404.html).
+   Where it sits: loaded by every page; plain CSS, no build step, so it stays easy to update.
+   Input: the class names used in the HTML. Output: layout, colour and type on phone and desktop.
+   Design rules follow CMSC 601 "Self-Promotion: Web Pages": 1-2 typefaces, a restrained palette,
+   consistent spacing, clear headings, whitespace, responsive layout, no tiny type, accessible. */
 
+/* ===================================================== 1. Design tokens */
+:root {
+  --ink:    #1d1d1f;   /* [L] body text: 16.8:1 contrast on white (WCAG AA needs 4.5:1) */
+  --ink-2:  #4a4a4f;   /* [L] secondary text: 8.8:1 */
+  --ink-3:  #5c5c63;   /* [L] dates and venues: 6.6:1 -- never lighter (slide 21: avoid gray on gray) */
+  --accent: #b5470b;   /* [L] burnt orange, kept from the old site and the photo's sunset: 5.4:1 on white */
+  --accent-soft: #fff1e6;  /* [L] tint behind accent text: accent on it = 4.9:1 */
+  --link:   #1a5fb4;   /* [L] blue links, not orange: blue is what visitors expect a link to be (slide 8: obey conventions); 6.3:1 */
+  --paper:  #faf7f4;   /* [L] warm off-white for the hero and tags: separates areas without borders everywhere */
+  --line:   #e6e1dc;   /* [L] hairline borders: decorative only, so it needs no contrast ratio */
+  --appear-bg: #f0f4ff; --appear-ink: #1a56c4; --appear-line: #bad0f8;  /* [L] "To appear" badge: 6.0:1, the word carries the meaning, not the colour */
 
-/* ==========================================================================
-   RESET & BASE
-   ========================================================================== */
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;   /* [L] typeface 1 of 2: headings and name, a little personality (slide 17) */
+  --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; /* [L] typeface 2 of 2: body; system fonts as fallback if Google Fonts fails */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s5: 1.5rem; --s6: 2rem; --s7: 3rem;  /* [L] one spacing scale used everywhere = "consistent spacing" (slide 17) */
+  --radius: 12px;      /* [L] one corner radius for every card */
+  --tap: 44px;         /* [L] minimum touch-target height: Apple/WCAG guidance for fingers on phones */
+  --header-h: 4rem;    /* [L] sticky header height, reused to offset anchor jumps */
 }
 
+/* ===================================================== 2. Base */
+*, *::before, *::after { box-sizing: border-box; }   /* [L] padding counts inside width, so columns never overflow on phones */
+
 html {
-  font-size: 16px;
+  font-size: 100%;                       /* [L] 100%, not 16px: respects the visitor's own browser text size (zoom/accessibility) */
+  -webkit-text-size-adjust: 100%;        /* [L] stops iOS Safari inflating text in landscape */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }      /* [L] smooth anchor scrolling only for people who haven't asked the OS to reduce motion */
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
-  line-height: 1.5;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.0625rem;                  /* [L] 17 px body, not 14-15: slide 18 "avoid tiny type" */
+  line-height: 1.65;                     /* [L] generous line height = readable paragraphs, no "wall of text" */
+  color: var(--ink);
+  background: #fff;
+  overflow-wrap: break-word;             /* [L] long words/URLs wrap instead of widening the page on a 320 px phone */
 }
 
+h1, h2, h3 { line-height: 1.25; margin: 0; }
+h1, h2 { font-family: var(--serif); font-weight: 700; letter-spacing: -.01em; }
+p { margin: 0 0 var(--s4); }
 
-/* ==========================================================================
-   TYPOGRAPHY
-   ========================================================================== */
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: .18em; }  /* [L] links stay underlined: colour alone must not carry meaning (slide 21) */
+a:hover { text-decoration-thickness: 2px; }
 
-h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 4px;
+:focus-visible {                         /* [L] :focus-visible, not :focus: a clear ring for keyboard users, no ring after mouse clicks */
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-h2 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #c05c0a;
-  margin-bottom: 16px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #c05c0a;
+img { max-width: 100%; height: auto; display: block; }   /* [L] images never wider than their column */
+
+.sr-only {                               /* [L] visible to screen readers only, e.g. the "Copied" announcement */
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-p {
-  margin-bottom: 12px;
+.skip-link {                             /* [L] first Tab stop: jump past the menu straight to the content */
+  position: absolute; left: var(--s4); top: -100px;
+  background: var(--ink); color: #fff; padding: var(--s2) var(--s4); border-radius: 8px; z-index: 100;
 }
+.skip-link:focus { top: var(--s4); }     /* [L] slides into view only when focused by keyboard */
 
-a {
-  color: #1772d0;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #0d5aab;
-  text-decoration: underline;
-}
-
-ul {
-  list-style: none;
-}
-
-strong {
-  font-weight: 700;
-}
-
-em {
-  font-style: italic;
-}
-
-
-/* ==========================================================================
-   LAYOUT — centered single column
-   ========================================================================== */
-
-.container {
-  max-width: 850px;
+.wrap {
+  width: 100%;
+  max-width: 64rem;                      /* [L] 1024 px cap: lines stay readable on wide Mac displays */
   margin: 0 auto;
-  padding: 40px 20px;
+  padding-inline: clamp(1rem, 4vw, 2rem);  /* [L] clamp(min, preferred, max): 16 px gutters on phones growing to 32 px */
 }
 
-section {
-  margin-top: 40px;
-}
-
-
-/* ==========================================================================
-   HEADER — two-column: photo left, info right
-   ========================================================================== */
-
+/* ===================================================== 3. Header and navigation */
 .site-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
+  position: sticky; top: 0; z-index: 10; /* [L] sticky on desktop so navigation is always one click away */
+  background: rgba(255, 255, 255, .96);
+  border-bottom: 1px solid var(--line);
 }
-
-.header-photo {
-  flex: 0 0 190px;
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s2) var(--s5); flex-wrap: wrap;
+  min-height: var(--header-h);
 }
-
-.header-photo img {
-  width: 190px;
-  display: block;
-  border-radius: 6px;
+.brand {
+  font-family: var(--serif); font-weight: 700; font-size: 1.2rem;
+  color: var(--ink); text-decoration: none;
+  display: inline-flex; align-items: center; min-height: var(--tap);
 }
-
-/* Shown when image file isn't present yet */
-.photo-placeholder {
-  width: 190px;
-  height: 240px;
-  background: #e8e8e8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px dashed #ccc;
+.nav ul { display: flex; flex-wrap: wrap; gap: var(--s1); list-style: none; margin: 0; padding: 0; }  /* [L] links wrap onto a second line, never hidden behind a hover menu (slide 21) */
+.nav a {
+  display: inline-flex; align-items: center; min-height: var(--tap);
+  padding: 0 var(--s3); border-radius: 8px;
+  color: var(--ink-2); font-weight: 500; text-decoration: none;  /* [L] nav links aren't underlined: their place in the menu bar already says "link" */
 }
+.nav a:hover { background: var(--accent-soft); color: var(--accent); }
 
-.header-info {
-  flex: 1;
-  padding-top: 4px;
-}
+section[id], main[id] { scroll-margin-top: calc(var(--header-h) + var(--s4)); }  /* [L] anchor jumps land below the sticky header, not under it */
 
-.header-info .title {
-  font-size: 17px;
-  color: #333;
-  margin-bottom: 2px;
-}
-
-.header-info .affiliation {
-  font-size: 15px;
-  color: #555;
-  margin-bottom: 2px;
-}
-
-.header-info .advisor {
-  font-size: 15px;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-/* Contact link pill badges */
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.contact-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 13px;
-  font-size: 14px;
-  color: #1772d0;
-  border: 1px solid #c8d8f0;
-  border-radius: 20px;
-  background: #f4f8ff;
-  text-decoration: none;
-  transition: background 0.15s, border-color 0.15s;
-}
-
-.contact-links a:hover {
-  background: #ddeafc;
-  border-color: #1772d0;
-  text-decoration: none;
-}
-
-
-/* ==========================================================================
-   NEWS SECTION
-   ========================================================================== */
-
-/* Two-column grid: column 1 is exactly as wide as the widest date pill
-   (max-content), column 2 takes the rest (1fr). Every item reuses these same
-   columns via subgrid, so each sentence starts at the same x however long its
-   month name is ("May" vs "September"). */
-.news-list {
+/* ===================================================== 4. Hero: the 10-second test */
+.hero { background: var(--paper); border-bottom: 1px solid var(--line); }
+.hero .wrap {
   display: grid;
-  grid-template-columns: max-content 1fr;
-  column-gap: 12px;
-  row-gap: 10px;
-}
-
-.news-item {
-  display: grid;
-  grid-column: 1 / -1;             /* span both columns of the list... */
-  grid-template-columns: subgrid;  /* ...and share their widths across all rows */
-  align-items: baseline;           /* pill sits on the sentence's first line */
-  font-size: 15px;
-}
-
-.news-date {
-  text-align: center;              /* pills are all column-width now; centre the date */
-  padding: 1px 9px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #c05c0a;
-  background: #fff4ec;
-  border: 1px solid #f0c8a0;
-  border-radius: 12px;
-  white-space: nowrap;
-}
-
-.news-text {
-  line-height: 1.5;
-}
-
-
-/* ==========================================================================
-   RESEARCH SECTION
-   ========================================================================== */
-
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  margin-top: 14px;
-}
-
-.research-card {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-left: 4px solid #c05c0a;
-  border-radius: 6px;
-  padding: 18px 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.research-card-header {
-  display: flex;
+  grid-template-columns: 13.5rem 1fr;    /* [L] photo column 216 px, text takes the rest */
+  gap: var(--s6) clamp(1.5rem, 4vw, 3rem);
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
 }
-
-.research-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: #fff4ec;
-  border-radius: 50%;
-  color: #c05c0a;
-  font-size: 14px;
-  flex-shrink: 0;
+.hero-photo {
+  width: 13.5rem; aspect-ratio: 1;       /* [L] aspect-ratio 1 = always a perfect square, so the circle never squashes */
+  border-radius: 50%; object-fit: cover;
+  box-shadow: 0 0 0 6px #fff, 0 0 0 7px var(--line);  /* [L] soft white ring replaces the old heavy black one */
 }
-
-.research-card-title {
-  font-weight: 700;
-  font-size: 15px;
-  color: #1a1a1a;
-  line-height: 1.3;
-}
-
-.research-card p {
-  font-size: 14px;
-  color: #555;
+.hero h1 { font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem); color: var(--ink); }  /* [L] 36 px on phones up to 52 px on desktop */
+.role { margin: var(--s2) 0 0; font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+.affil { margin: var(--s1) 0 var(--s4); color: var(--ink-2); }
+.identity {
+  font-size: clamp(1.075rem, 1rem + .35vw, 1.25rem);
   line-height: 1.6;
-  margin-bottom: 0;
+  border-left: 4px solid var(--accent);  /* [L] accent bar marks the one-sentence research identity (slide 11) */
+  padding-left: var(--s4);
+  margin: 0 0 var(--s5);
+  max-width: 44rem;
+}
+.chips { display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
+.chips a {
+  display: inline-flex; align-items: center; gap: var(--s2);
+  min-height: var(--tap); padding: 0 var(--s4);
+  border: 1px solid var(--line); border-radius: 999px;   /* [L] 999px radius = pill shape whatever the height */
+  background: #fff; color: var(--ink); font-weight: 500; text-decoration: none;
+}
+.chips a:hover { border-color: var(--accent); color: var(--accent); }
+.chips i { color: var(--accent); width: 1.1em; text-align: center; }   /* [L] icons always sit beside a text label -- never "mystery icons" (slide 18) */
+
+/* ===================================================== 5. Sections */
+.section { padding-block: clamp(2.5rem, 5vw, 3.75rem); }
+.section + .section { border-top: 1px solid var(--line); }
+.section h2 { font-size: clamp(1.6rem, 1.3rem + 1vw, 2rem); margin-bottom: var(--s5); }
+.section h2::after {                     /* [L] short accent rule under each heading: clear headings (slide 17) */
+  content: ""; display: block; width: 2.5rem; height: 3px;
+  background: var(--accent); margin-top: var(--s2); border-radius: 2px;
+}
+.measure { max-width: 42rem; }           /* [L] ~70 characters per line: the comfortable reading width */
+.lead { font-size: 1.125rem; color: var(--ink-2); }
+
+/* ===================================================== 6. Research projects */
+.projects { display: grid; gap: var(--s5); list-style: none; margin: 0 0 var(--s5); padding: 0; }
+.project {
+  display: grid;
+  grid-template-columns: 18rem 1fr;      /* [L] figure 288 px beside the text on desktop: big enough to read the diagrams, text still ~600 px wide */
+  gap: var(--s5);
+  align-items: start;
+  padding: var(--s5);
+  border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+}
+.project-figure {
+  margin: 0;
+  aspect-ratio: 16 / 10;                 /* [L] same frame for every figure: tidy column whatever the figure's shape */
+  border: 1px solid var(--line); border-radius: 8px; background: #fff; overflow: hidden;
+}
+.project-figure img { width: 100%; height: 100%; object-fit: contain; }  /* [L] contain, not cover: the whole figure stays visible, nothing cropped */
+.project h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: var(--s2); }
+.project p { color: var(--ink-2); }
+.project-links { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); margin: 0; padding: 0; list-style: none; font-weight: 500; }
+.project-links li { min-height: var(--tap); display: flex; align-items: center; }  /* [L] each link a full finger-sized row on phones */
+
+/* ===================================================== 7. Publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s4); }
+.pub { padding: var(--s5); border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.pub-tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s2); }
+.tag {
+  font-size: .875rem; font-weight: 600;  /* [L] 14 px, up from the old 12 px badges (slide 18: tiny type) */
+  padding: .1rem .65rem; border-radius: 999px;
+  background: var(--paper); color: var(--ink-2); border: 1px solid var(--line);
+}
+.tag-appear { background: var(--appear-bg); color: var(--appear-ink); border-color: var(--appear-line); }
+.pub h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--s2); }
+.authors { margin: 0 0 var(--s1); color: var(--ink-2); }
+.authors .me { color: var(--ink); font-weight: 600; }   /* [L] your name in bold, as on the CV */
+.venue { margin: 0 0 var(--s3); color: var(--ink-3); }
+.venue cite { font-style: italic; }
+.pub-links { display: flex; flex-wrap: wrap; gap: 0 var(--s4); list-style: none; margin: 0; padding: 0; font-weight: 500; }
+.pub-links li { min-height: var(--tap); display: flex; align-items: center; }
+.pub-links i, .project-links i { margin-right: var(--s1); }
+
+details { border-top: 1px solid var(--line); }   /* [L] <details>: abstract and BibTeX stay folded, so the list is skimmable, not a wall of text */
+details:last-child { border-bottom: 1px solid var(--line); }
+summary {
+  min-height: var(--tap); display: flex; align-items: center; gap: var(--s2);
+  cursor: pointer; font-weight: 600; color: var(--link);
+}
+summary::marker { color: var(--accent); }
+details > div { padding: 0 0 var(--s4); }
+details pre {
+  margin: 0 0 var(--s3); padding: var(--s4);
+  background: var(--paper); border-radius: 8px; border: 1px solid var(--line);
+  font-size: .875rem; line-height: 1.5;
+  white-space: pre-wrap;                 /* [L] wrap BibTeX lines instead of forcing sideways scrolling on phones */
+  overflow-wrap: anywhere;
+}
+.copy-btn {
+  min-height: var(--tap); padding: 0 var(--s4);
+  border: 1px solid var(--line); border-radius: 999px; background: #fff;
+  font: inherit; font-weight: 500; color: var(--ink); cursor: pointer;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===================================================== 8. News (dates aligned) */
+.news {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;  /* [L] column 1 = width of the widest date, so every sentence starts at the same x */
+  gap: var(--s3) var(--s4);
+}
+.news li { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: baseline; }  /* [L] subgrid: every row shares the list's two columns */
+.news time {
+  font-size: .875rem; font-weight: 600; text-align: center; white-space: nowrap;
+  color: var(--accent); background: var(--accent-soft);
+  border-radius: 999px; padding: .1rem .7rem;
 }
 
-@media (max-width: 640px) {
-  .research-grid {
-    grid-template-columns: 1fr;
-  }
+/* ===================================================== 9. Experience, education, awards, service */
+.entries { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s5); }
+.entry { display: grid; grid-template-columns: 1fr auto; gap: 0 var(--s5); }   /* [L] text left, dates right on wide screens */
+.entry-title { font-weight: 600; margin: 0; }
+.entry-sub { color: var(--ink-2); margin: 0; }
+.entry-note { color: var(--ink-2); margin: var(--s1) 0 0; }
+.entry-when { color: var(--ink-3); font-size: .9375rem; white-space: nowrap; text-align: right; margin: 0; }
+.subsection + .subsection { margin-top: var(--s7); }
+.subsection h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: var(--s4); }
+
+/* ===================================================== 10. Contact and footer */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--s5); }  /* [L] 2-3 columns on desktop, 1 on phones, no breakpoint needed */
+.contact-grid h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); margin-bottom: var(--s2); }
+.plain-list { list-style: none; margin: 0; padding: 0; }
+.plain-list li { min-height: var(--tap); display: flex; align-items: center; }
+.plain-list i { color: var(--accent); width: 1.4em; }
+
+.site-footer { border-top: 1px solid var(--line); background: var(--paper); color: var(--ink-3); font-size: .9375rem; }
+.site-footer .wrap { padding-block: var(--s5); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2) var(--s5); }
+.site-footer p { margin: 0; }
+
+/* ===================================================== 11. Tablets and phones */
+@media (max-width: 900px) {                     /* [L] 900 px, not 760: on tablets a 288 px figure left only ~340 px for the card text */
+  .project { grid-template-columns: 1fr; }      /* [L] figure above the text instead of beside it */
+  .project-figure { max-width: 30rem; }         /* [L] 480 px cap so the figure doesn't balloon on a 900 px screen */
+}
+@media (max-width: 760px) {                     /* [L] 760 px: below this, side-by-side layouts get too cramped */
+  .site-header { position: static; }            /* [L] not sticky on phones: a two-line menu would cover a quarter of the screen */
+  .site-header .wrap { padding-block: var(--s2); }
+  .nav a { padding: 0 var(--s2); }              /* [L] 8 px side padding on phones, not 12: the menu fits in ~2 rows instead of 3-4; height stays 44 px for fingers */
+  .nav ul { margin-left: calc(-1 * var(--s2)); }  /* [L] lines the first link's text up with the name above it */
+  .hero .wrap { grid-template-columns: 1fr; gap: var(--s5); }
+  .hero-photo { width: 9rem; }                  /* [L] 144 px photo on phones leaves the name and statement above the fold */
+  .project { grid-template-columns: 1fr; padding: var(--s4); }
+  .project-figure { max-width: 30rem; }
+  .pub { padding: var(--s4); }
+}
+@media (max-width: 520px) {                     /* [L] 520 px: phone portrait */
+  .entry { grid-template-columns: 1fr; }        /* [L] dates move under the title instead of squeezing it */
+  .entry-when { text-align: left; order: 3; }
+  .news { grid-template-columns: 1fr; }         /* [L] date above its sentence: too narrow for two columns */
+  .news li { grid-template-columns: 1fr; row-gap: var(--s1); }
+  .news time { justify-self: start; }
 }
 
-
-/* ==========================================================================
-   PUBLICATIONS SECTION
-   ========================================================================== */
-
-.pub-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid #eeeeee;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  transition: box-shadow 0.15s;
-}
-
-.pub-row:hover {
-  box-shadow: 0 3px 10px rgba(0,0,0,0.09);
-}
-
-/* Every thumbnail sits in the same 200 x 120 px frame (5:3 = 1.67). Why 5:3:
-   a square figure fills the frame's height, the widest one (2.85:1) fills its
-   width, and the two get equal area when width/height = sqrt(2.85) = 1.69. */
-.pub-thumb {
-  flex: 0 0 200px;
-}
-
-.pub-thumb img {
-  width: 200px;
-  height: 120px;
-  object-fit: contain;   /* shrink the whole figure to fit: never crop, never stretch */
-  background: #ffffff;   /* fills any space left beside or above the figure */
-  display: block;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-}
-
-/* Shown when thumbnail isn't present yet */
-.thumb-placeholder {
-  width: 200px;
-  height: 120px;
-  background: #e8e8e8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-  font-size: 12px;
-  border-radius: 4px;
-  border: 1px dashed #ccc;
-  text-align: center;
-  padding: 4px;
-}
-
-.pub-info {
-  flex: 1;
-}
-
-.pub-title {
-  font-weight: 700;
-  margin-bottom: 4px;
-  font-size: 15px;
-}
-
-.pub-authors {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 4px;
-}
-
-.pub-venue {
-  font-size: 14px;
-  margin-bottom: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
-
-.venue-badge {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.venue-badge.accepted {
-  background: #eaf4ea;
-  color: #2e7d32;
-  border: 1px solid #a5d6a7;
-}
-
-.venue-badge.review {
-  background: #f0f4ff;
-  color: #1a56c4;
-  border: 1px solid #bad0f8;
-}
-
-.venue-badge.under-review {
-  background: #fff8ec;
-  color: #b45309;
-  border: 1px solid #fcd29b;
-}
-
-/* Accepted but not yet presented or published. Blue reads as "coming":
-   distinct from green ("accepted venue") and orange ("under review").
-   Text #1a56c4 on #f0f4ff has a 6.0:1 contrast ratio (WCAG AA needs 4.5:1). */
-.venue-badge.to-appear {
-  background: #f0f4ff;
-  color: #1a56c4;
-  border: 1px solid #bad0f8;
-}
-
-.pub-links {
-  font-size: 14px;
-  margin-bottom: 0;
-}
-
-.pub-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-right: 10px;
-  color: #1772d0;
-}
-
-
-/* ==========================================================================
-   SHARED ENTRY LIST — used by Experience, Education, Awards
-   ========================================================================== */
-
-.entry-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.entry-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 14px 16px;
-  border-radius: 8px;
-  border: 1px solid #eeeeee;
-  background: #ffffff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  transition: box-shadow 0.15s;
-}
-
-.entry-item:hover {
-  box-shadow: 0 3px 10px rgba(0,0,0,0.09);
-}
-
-.entry-icon {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff4ec;
-  border-radius: 50%;
-  color: #c05c0a;
-  font-size: 15px;
-  margin-top: 2px;
-}
-
-.award-icon {
-  background: #fff4ec;
-  color: #c05c0a;
-}
-
-.entry-body {
-  flex: 1;
-}
-
-.entry-top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.entry-title {
-  font-weight: 700;
-  font-size: 15px;
-  color: #1a1a1a;
-}
-
-.entry-sub {
-  font-size: 14px;
-  color: #555;
-  margin-top: 3px;
-}
-
-.entry-meta {
-  font-size: 13px;
-  color: #888;
-  margin-top: 3px;
-}
-
-.exp-duration {
-  display: inline-block;
-  padding: 1px 9px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #c05c0a;
-  background: #fff4ec;
-  border: 1px solid #f0c8a0;
-  border-radius: 12px;
-}
-
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-
-.site-footer {
-  margin-top: 48px;
-  padding-top: 16px;
-  border-top: 1px solid #e0e0e0;
-  font-size: 13px;
-  color: #888;
-  text-align: center;
-}
-
-
-/* ==========================================================================
-   RESPONSIVE — mobile (< 640px)
-   ========================================================================== */
-
-@media (max-width: 640px) {
-  html {
-    font-size: 15px;
-  }
-
-  .container {
-    padding: 24px 16px;
-  }
-
-  /* Stack header photo above name/info */
-  .site-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .header-photo {
-    flex: none;
-  }
-
-  .contact-links {
-    justify-content: center;
-  }
-
-  /* Stack publication thumbnails above text */
-  .pub-row {
-    flex-direction: column;
-  }
-
-  .pub-thumb {
-    flex: none;
-  }
-
-  .pub-thumb img,
-  .thumb-placeholder {
-    width: 100%;
-    max-width: 260px;
-    height: auto;
-    aspect-ratio: 5 / 3;   /* same frame shape as desktop: 260 x 156 px on phones */
-  }
-
-  .news-date {
-    display: block;
-    margin-bottom: 2px;
-  }
+/* ===================================================== 12. Print */
+@media print {                                  /* [L] printing the page gives a clean one-colour summary */
+  .site-header, .skip-link, .copy-btn { display: none; }
+  .hero, .site-footer { background: none; }
+  .pub, .project { border: none; padding: 0; }
+  a { color: inherit; }
 }

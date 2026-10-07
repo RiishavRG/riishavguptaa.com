@@ -13,3 +13,8 @@ CMSC601Assignment2-CV.pdf
 Demo_phonotonos.pdf
 TissueAssessment.pdf
 Watermarking.pdf
+
+# Local test tooling (installed by npm in _tools/, never published)
+_tools/node_modules/
+_tools/package-lock.json
+11-websites-601Sp2026.pdf

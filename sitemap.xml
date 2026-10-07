@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap.xml - tells search engines which pages exist and when they last changed (slide 13: discoverable).
+     Update <lastmod> whenever you update the site. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://riishavguptaa.com/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://riishavguptaa.com/Rishav_Gupta_CV.pdf</loc>
+    <lastmod>2026-10-04</lastmod>
+  </url>
+</urlset>

@@ -1,380 +1,641 @@
 <!DOCTYPE html>
 <!--
-  index.html - the whole riishavguptaa.com site: one page, plain HTML + style.css, no build step.
+  index.html - the whole riishavguptaa.com site: one page, hand-written HTML + style.css, no build step.
   Served by GitHub Pages from the main branch; a push to main redeploys in about a minute.
-  Loads: style.css, images/*, Font Awesome icons (CDN); the CV button serves Rishav_Gupta_CV.pdf.
-  Content mirrors that CV PDF. Only accepted or published work is listed here.
+  Content mirrors Rishav_Gupta_CV.pdf. Only accepted or published work is listed (advisor guidance).
+  Structure follows CMSC 601 "Self-Promotion: Web Pages": 10-second hero, conventional navigation,
+  research through-line, citable publications, then background and contact.
+  To update: see README.md ("How to update").
 -->
-<html lang="en">
+<html lang="en"><!-- [L] lang="en": screen readers pick the right pronunciation -->
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rishav Gupta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- [L] no maximum-scale: visitors must stay able to pinch-zoom (slide 19) -->
+  <title>Rishav Gupta · Ph.D. Student, UMBC · Smartphone Health Sensing</title><!-- [L] name first, then role and topic: what appears in the browser tab and Google result -->
+  <meta name="description" content="Rishav Gupta is a Ph.D. student in Computer Science at UMBC who turns everyday smartphones into cardiovascular sensors, sending ultrasound through the skin with only the phone's own speaker and microphone." /><!-- [L] the snippet search engines show under the title -->
+  <link rel="canonical" href="https://riishavguptaa.com/" /><!-- [L] one official URL, so search engines don't split ranking between www / http variants -->
+  <meta name="theme-color" content="#b5470b" /><!-- [L] tints the browser bar on phones in the site's accent -->
+
+  <!-- Social / search preview (slide 26: check the social preview) -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Rishav Gupta · Ph.D. Student, UMBC" />
+  <meta property="og:description" content="Turning everyday smartphones into cardiovascular sensors, using only the phone's own speaker and microphone." />
+  <meta property="og:url" content="https://riishavguptaa.com/" />
+  <meta property="og:image" content="https://riishavguptaa.com/images/og-card.png" /><!-- [L] absolute URL: link-preview bots don't resolve relative paths -->
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Rishav Gupta, Ph.D. student in Computer Science at UMBC, turning everyday smartphones into cardiovascular sensors." />
+  <meta property="profile:first_name" content="Rishav" />
+  <meta property="profile:last_name" content="Gupta" />
+  <meta name="twitter:card" content="summary_large_image" /><!-- [L] X/Twitter shows the full-width card, not a small square -->
+
+  <!-- Icons (slide 26: check the page icons) -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" /><!-- [L] SVG first: crisp at any size in modern browsers -->
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" /><!-- [L] PNG fallback for older browsers -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" /><!-- [L] icon when saved to an iPhone home screen -->
+
+  <!-- Fonts: 2 typefaces only (slide 17) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><!-- [L] preconnect: opens the font server connection early, so text styles sooner -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" /><!-- [L] display=swap: show fallback text immediately, never invisible text while fonts load -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /><!-- [L] versioned CDN URL (6.5.0), not "latest": icons can't change under you -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Structured data: tells search engines both names are one person (stable identity, slides 14-15) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rishav Gupta",
+    "alternateName": "Riishav Guptaa",
+    "url": "https://riishavguptaa.com/",
+    "image": "https://riishavguptaa.com/images/headshot-512.jpg",
+    "email": "mailto:rishavg1@umbc.edu",
+    "jobTitle": "Ph.D. Student in Computer Science",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Maryland, Baltimore County", "url": "https://www.umbc.edu" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Manipal Institute of Technology" },
+    "knowsAbout": ["mobile health sensing", "acoustic and ultrasonic sensing", "digital signal processing", "cardiovascular sensing", "machine learning"],
+    "sameAs": [
+      "https://scholar.google.com/citations?user=S7ptSVcAAAAJ",
+      "https://github.com/RiishavRG",
+      "https://www.linkedin.com/in/riishavrg/"
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<div class="container">
+<a class="skip-link" href="#main">Skip to main content</a><!-- [L] first Tab stop for keyboard users (slide 26: tab through every element) -->
 
-  <!-- ========== HEADER ========== -->
-  <header class="site-header">
-    <div class="header-photo">
-      <!-- Replace headshot.jpg with your actual photo -->
-      <img src="images/headshot.png" alt="Rishav Gupta" width="190"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-      <div class="photo-placeholder" style="display:none;">Photo</div>
+<!-- ========== HEADER: conventional labels, no hover-only menus (slides 8, 21) ========== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#main">Rishav Gupta</a>
+    <nav class="nav" aria-label="Main"><!-- [L] aria-label names this landmark for screen-reader users -->
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="Rishav_Gupta_CV.pdf">CV (PDF)</a></li><!-- [L] same file path as always, so old links to the CV keep working (slide 23) -->
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ========== HERO: who / what / why / where / how to reach, within 10 seconds (slides 7, 9, 27) ========== -->
+  <section class="hero" aria-labelledby="name">
+    <div class="wrap">
+      <img class="hero-photo"
+           src="images/headshot-256.jpg"
+           srcset="images/headshot-256.jpg 256w, images/headshot-512.jpg 512w"
+           sizes="(max-width: 760px) 144px, 216px"
+           width="256" height="256"
+           alt="Portrait of Rishav Gupta, smiling, outdoors at sunset" /><!-- [L] srcset: phones get the 14 KB file, Retina screens the 37 KB one; width/height reserve space so nothing jumps while it loads -->
+      <div>
+        <h1 id="name">Rishav Gupta</h1>
+        <p class="role">Ph.D. Student in Computer Science</p>
+        <p class="affil">
+          <a href="https://leetton.github.io/current-members.html">Future Sensing and Interaction (FSI) Lab</a>,
+          <a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> ·
+          Baltimore, MD · Advised by <a href="https://leetton.github.io/">Dr. Dong Li</a>
+        </p>
+        <!-- Research identity statement: AREA -> PROBLEM -> APPROACH -> OUTCOME in one sentence (slide 11) -->
+        <p class="identity">
+          I turn everyday smartphones into cardiovascular sensors: by sending ultrasound
+          through the skin with only the phone's own speaker and microphone, I measure
+          blood flow and tissue properties so that vascular screening can happen
+          anywhere, not just in a clinic.
+        </p>
+        <!-- Profiles: the website is the hub that cross-links everything else (slides 3, 14). Every icon has a text label (slide 18). -->
+        <ul class="chips">
+          <li><a href="mailto:rishavg1@umbc.edu"><i class="fa-solid fa-envelope" aria-hidden="true"></i>rishavg1@umbc.edu</a></li>
+          <li><a href="Rishav_Gupta_CV.pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>CV (PDF)</a></li>
+          <li><a href="https://scholar.google.com/citations?user=S7ptSVcAAAAJ&amp;hl=en"><i class="fa-brands fa-google-scholar" aria-hidden="true"></i>Google Scholar</a></li>
+          <li><a href="https://github.com/RiishavRG"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/riishavrg/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
+          <!-- ORCID (slides 3, 15): once you have an iD from orcid.org, uncomment and paste it here and in the Contact section:
+          <li><a href="https://orcid.org/0000-0000-0000-0000"><i class="fa-brands fa-orcid" aria-hidden="true"></i>ORCID</a></li> -->
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <div class="header-info">
-      <h1>Rishav Gupta</h1>
-      <p class="title">PhD Student in Computer Science</p>
-      <p class="affiliation">University of Maryland, Baltimore County</p>
-      <p class="advisor">
-        Advised by <a href="https://leetton.github.io/">Dr. Dong Li</a>,
-        Future Sensing and Interaction (FSI) Lab
+  <!-- ========== ABOUT: a short, human, professional bio (slides 9, 16) ========== -->
+  <section class="section" id="about" aria-labelledby="about-h">
+    <span id="bio"></span><!-- [L] keeps the old #bio link working (slide 23: stable URLs) -->
+    <div class="wrap">
+      <h2 id="about-h">About</h2>
+      <div class="measure">
+        <p>
+          I'm a Ph.D. student in Computer Science at the University of Maryland, Baltimore County (UMBC),
+          where I work in the Future Sensing and Interaction (FSI) Lab with Dr. Dong Li. My research
+          develops smartphone-based methods for cardiovascular health sensing, combining digital signal
+          processing, acoustic sensing, and machine learning to bring meaningful health insights to
+          everyday devices.
+        </p>
+        <p>
+          Before my Ph.D., I spent over five years as a senior iOS engineer at Gojek and Nuclei, building
+          mobile apps used by millions of people. I'm especially interested in research that bridges
+          low-level sensing with real-world, deployable mobile systems that reach the people who need them.
+        </p>
+        <p class="lead">You may also find my work published under the name <strong>Riishav Guptaa</strong>.</p><!-- [L] the ACM record uses this spelling, so searchers can connect the two (slide 13: discoverable) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESEARCH: frame the through-line, highlight selectively, real research visuals (slides 4, 10, 16) ========== -->
+  <section class="section" id="research" aria-labelledby="research-h">
+    <div class="wrap">
+      <h2 id="research-h">Research</h2>
+      <p class="lead measure">
+        One idea connects my projects: a phone's speaker and microphone can work as an
+        ultrasonic sensor, with no extra hardware.
       </p>
-      <nav class="contact-links">
-        <a href="mailto:rishavg1@umbc.edu"><i class="fa-solid fa-envelope"></i> Email</a>
-        <a href="Rishav_Gupta_CV.pdf"><i class="fa-solid fa-file-pdf"></i> CV</a>
-        <a href="https://scholar.google.com/citations?user=S7ptSVcAAAAJ&hl=en"><i class="fa-brands fa-google-scholar"></i> Google Scholar</a>
-        <a href="https://github.com/RiishavRG"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/riishavrg/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-      </nav>
+      <ul class="projects">
+        <li class="project">
+          <figure class="project-figure">
+            <img src="images/Phonotonos_Demo.jpg" width="800" height="797" loading="lazy"
+                 alt="Two screenshots of the Phonotonos app: a live blood-flow velocity trace with the signal locked, and a results screen showing heart rate and Doppler indices." /><!-- [L] loading="lazy": below-the-fold images load only when scrolled near, faster first view on phones -->
+          </figure>
+          <div>
+            <h3>Measuring blood flow through the skin</h3>
+            <p>
+              Phonotonos recovers arterial blood-flow velocity waveforms with phase-based ultrasonic
+              Doppler on a commodity smartphone, fusing ultrasound with arterial sound and motion sensing
+              to find the artery and reject hand motion. It measures four clinical Doppler indices with
+              accuracy comparable to dedicated medical devices.
+            </p>
+            <ul class="project-links">
+              <li><a href="#pub-mobisys">MobiSys '26 paper</a></li>
+              <li><a href="#pub-demo">MobiCom '26 demo</a></li>
+              <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Code and sample data on GitHub</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="project">
+          <figure class="project-figure">
+            <img src="images/TissueCharacterization.jpg" width="801" height="738" loading="lazy"
+                 alt="Diagram comparing ultrasound elastography with smartphone acoustic sensing on the forearm; both characterize viscoelastic tissue properties that can tune exoskeletons, haptic wristbands, and prosthetics." />
+          </figure>
+          <div>
+            <h3>Reading tissue mechanics with sound</h3>
+            <p>
+              Body-contact devices such as haptic wristbands, exoskeletons, and prosthetics press on soft
+              tissue that differs from person to person. I estimate tissue relaxation time from acoustic
+              chirps and their echoes using a phone's built-in speaker and microphone, a first step toward
+              devices that tune themselves to each wearer.
+            </p>
+            <ul class="project-links">
+              <li><a href="#pub-tissue">MobiCom '26 work-in-progress paper</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="project">
+          <figure class="project-figure">
+            <img src="images/Ultrasound_Watermark-1000.jpg" width="1000" height="489" loading="lazy"
+                 alt="Diagram: the caller's phone combines speech with an ultrasound reflection of facial motion in a watermark generator, and a detector on the callee's side checks the watermarked speech." />
+          </figure>
+          <div>
+            <h3>Securing phone calls with ultrasound</h3>
+            <p>
+              AI voice cloning lets scammers impersonate trusted people on calls. Ultrasound Watermark binds
+              live call audio to the caller's articulatory motion (mouth, jaw, and cheek movements sensed
+              with the phone's own ultrasound), which makes the watermark hard to fake.
+            </p>
+            <ul class="project-links">
+              <li><a href="#pub-edgesp">EdgeSP '26 paper</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <!-- Collaborators (slide 10, optional element): institution level, so it doesn't go stale when people move (slide 22) -->
+      <p class="measure">
+        I work with Dr. Dong Li at UMBC and with collaborators at UMass Amherst, Nanyang Technological
+        University, Indiana University, and Amazon.
+      </p>
     </div>
-  </header>
-
-  <!-- ========== BIO ========== -->
-  <section id="bio">
-    <p>
-      I am a PhD student in Computer Science at the <a href="https://www.umbc.edu">University of Maryland, Baltimore County (UMBC)</a>,
-      where I work in the <a href="https://leetton.github.io/fsi/">Future Sensing and Interaction (FSI) Lab</a> with <a href="https://leetton.github.io/">Dr. Dong Li</a>. My research develops
-      smartphone-based methods for cardiovascular health sensing, combining digital signal processing, acoustic
-      sensing, and machine learning to bring meaningful health insights to everyday devices.
-    </p>
-    <p>
-      Before starting my PhD, I spent over five years as a Senior iOS Engineer at <a href="https://www.gojek.com">Gojek</a> and <a href="https://www.gonuclei.com">Nuclei</a>, building
-      large-scale mobile applications used by millions of users. I am especially interested in research that
-      bridges low-level sensing with real-world, deployable mobile systems that reach people who need them.
-    </p>
   </section>
 
-  <!-- ========== NEWS ========== -->
-  <section id="news">
-    <h2>News</h2>
-    <ul class="news-list">
-      <li class="news-item">
-        <span class="news-date">July 2026</span>
-        <span class="news-text">Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong>
-        in the UMBC Graduate Student Association for 2026&ndash;2027.</span>
-      </li>
-      <li class="news-item">
-        <span class="news-date">May 2026</span>
-        <span class="news-text">Received the <strong>Computing for Social Good Special Award</strong> at the COEIT Research Day,
-        presented by Dean Jeanne M. van Briesen. One of only 2 awards across 114 posters.</span>
-      </li>
-      <li class="news-item">
-        <span class="news-date">May 2026</span>
-        <span class="news-text">PocketCardio won <strong>1st Place</strong> at the Maryland NEW VENTURE&trade; Program Pitch Night
-        at bwtech@UMBC.</span>
-      </li>
-      <li class="news-item">
-        <span class="news-date">April 2026</span>
-        <span class="news-text">Received the <strong>Best Poster Award</strong> at CSEE Research Day, UMBC.</span>
-      </li>
-      <li class="news-item">
-        <span class="news-date">May 2025</span>
-        <span class="news-text">Received <strong>Best Poster Award</strong> at COEIT Research Day, UMBC.</span>
-      </li>
-    </ul>
+  <!-- ========== PUBLICATIONS: full citation, type, abstract, BibTeX, links; reverse chronological (slides 12-13) ========== -->
+  <section class="section" id="publications" aria-labelledby="pubs-h">
+    <div class="wrap">
+      <h2 id="pubs-h">Publications</h2>
+      <ol class="pubs" reversed><!-- [L] <ol reversed>: an ordered list counting down, newest first -->
+
+        <!-- MobiCom '26 WiP (first author) -->
+        <li class="pub" id="pub-tissue">
+          <p class="pub-tags"><span class="tag">Work in progress</span><span class="tag tag-appear">To appear</span></p>
+          <h3>Smartphone-based Acoustic Tissue Characterization for Personalized Body-contact Systems</h3>
+          <p class="authors"><span class="me">Rishav Gupta</span>, Alyssa N. Maguina, Sithumina Weerarathna, Janelle P. Clark, Dong Li</p>
+          <p class="venue"><cite>ACM MobiCom 2026</cite> · 32nd International Conference on Mobile Computing and Networking, work-in-progress track · Austin, TX</p>
+          <!-- After the conference: add the DOI link here, as on the MobiSys entry, and remove "To appear". -->
+          <ul class="pub-links">
+            <li><a href="https://www.sigmobile.org/mobicom/2026/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>MobiCom 2026 conference site</a></li>
+          </ul>
+          <details>
+            <summary>Abstract</summary>
+            <div><p>
+              Interactive systems such as haptic wristbands maintain sustained body contact, but variations
+              in soft tissue mechanics can cause the same force to feel different across users. Conventional
+              tissue characterization relies on specialized systems such as ultrasound elastography, limiting
+              its use in personalized devices. We take a first step toward smartphone-based acoustic tissue
+              characterization by investigating if a smartphone can estimate tissue relaxation time using its
+              built-in speaker and microphone. The smartphone probes tissue with acoustic chirps and estimates
+              relaxation behavior from tissue echoes. We validate the approach against laboratory indentation,
+              observing a strong correlation between smartphone and mechanical estimates on a silicone phantom
+              (r=0.96) and a weaker positive correlation on the human forearm (r=0.29). These preliminary
+              results support the feasibility of smartphone-based acoustic tissue characterization for
+              tissue-aware body-contact systems.
+            </p></div>
+          </details>
+          <details>
+            <summary>BibTeX</summary>
+            <div>
+<pre id="bib-tissue">@inproceedings{gupta2026tissue,
+  title     = {{WiP}: Smartphone-based Acoustic Tissue Characterization
+               for Personalized Body-contact Systems},
+  author    = {Gupta, Rishav and Maguina, Alyssa N. and Weerarathna, Sithumina
+               and Clark, Janelle P. and Li, Dong},
+  booktitle = {Proceedings of the 32nd Annual International Conference
+               on Mobile Computing and Networking},
+  series    = {MobiCom '26},
+  year      = {2026},
+  publisher = {ACM},
+  address   = {Austin, TX, USA},
+  note      = {To appear}
+}</pre>
+              <button class="copy-btn" type="button" data-copy="bib-tissue" hidden>Copy BibTeX</button><!-- [L] hidden until JS confirms the clipboard works: no dead button -->
+            </div>
+          </details>
+        </li>
+
+        <!-- MobiCom '26 demo (first author) -->
+        <li class="pub" id="pub-demo">
+          <p class="pub-tags"><span class="tag">Demo</span><span class="tag tag-appear">To appear</span></p>
+          <h3>Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</h3>
+          <p class="authors"><span class="me">Rishav Gupta</span>, Shirui Cao, Jie Xiong, Sunghoon Ivan Lee, Jeremy Gummeson, Dong Li</p>
+          <p class="venue"><cite>ACM MobiCom 2026</cite> · 32nd International Conference on Mobile Computing and Networking, demo track · Austin, TX</p>
+          <ul class="pub-links">
+            <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Phonotonos code on GitHub</a></li>
+            <li><a href="https://www.sigmobile.org/mobicom/2026/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>MobiCom 2026 conference site</a></li>
+          </ul>
+          <details>
+            <summary>Abstract</summary>
+            <div><p>
+              Cardiovascular diseases remain a leading cause of death worldwide, motivating accessible tools
+              for vascular health monitoring. This demo presents Phonotonos, a smartphone-based system for
+              through-skin ultrasonic sensing of blood-flow velocity waveforms and Doppler indices. Phonotonos
+              repurposes smartphones for vascular sensing despite their low ultrasound transmit power, coarse
+              spatial resolution, and lack of beamforming. The system combines phase-based ultrasonic Doppler
+              sensing with arterial heart sounds and inertial measurements to localize arteries, mitigate motion
+              interference, and recover blood-flow waveforms. Our demonstration showcases an end-to-end prototype
+              in which users position a smartphone over an artery, receive real-time placement guidance, observe
+              the recovered blood-flow waveform, and obtain clinically relevant Doppler indices. Through this
+              interactive demo, we highlight the feasibility of transforming smartphones into portable and
+              accessible tools for everyday vascular screening and monitoring.
+            </p></div>
+          </details>
+          <details>
+            <summary>BibTeX</summary>
+            <div>
+<pre id="bib-demo">@inproceedings{gupta2026phonotonosdemo,
+  title     = {Demo: Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing
+               Using Smartphones},
+  author    = {Gupta, Rishav and Cao, Shirui and Xiong, Jie and Lee, Sunghoon Ivan
+               and Gummeson, Jeremy and Li, Dong},
+  booktitle = {Proceedings of the 32nd Annual International Conference
+               on Mobile Computing and Networking},
+  series    = {MobiCom '26},
+  year      = {2026},
+  publisher = {ACM},
+  address   = {Austin, TX, USA},
+  note      = {To appear}
+}</pre>
+              <button class="copy-btn" type="button" data-copy="bib-demo" hidden>Copy BibTeX</button>
+            </div>
+          </details>
+        </li>
+
+        <!-- EdgeSP '26 workshop -->
+        <li class="pub" id="pub-edgesp">
+          <p class="pub-tags"><span class="tag">Workshop</span><span class="tag tag-appear">To appear</span></p>
+          <h3>Ultrasound Watermark: Real-time Acoustic Watermarking against Voice Scams on Smartphones</h3>
+          <p class="authors">Renzhi Hao, Shirui Cao, Yizhu Wen, <span class="me">Rishav Gupta</span>, Dharani Nadendla, Mehran Kafai, Hanqing Guo, Dong Li</p>
+          <p class="venue"><cite>ACM/IEEE EdgeSP 2026</cite> · 9th Workshop on Security and Privacy in Edge Computing, co-located with ACM/IEEE SEC 2026 · Santa Clara, CA</p>
+          <ul class="pub-links">
+            <li><a href="https://acm-ieee-sec.org/2026/edgesp.php"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>EdgeSP 2026 workshop site</a></li>
+          </ul>
+          <details>
+            <summary>Abstract (excerpt)</summary><!-- [L] "excerpt": only the first sentences were available; replace with the full abstract when you have it -->
+            <div><p>
+              In this paper, we present Ultrasound Watermark, a real-time, smartphone-native framework for
+              protecting live phone calls against voice impersonation attacks. Recent advances in text-to-speech
+              (TTS), voice conversion (VC), and other AI-driven speech synthesis attacks enable adversaries to
+              convincingly mimic trusted individuals during phone calls, creating a growing threat of voice scams.
+              To defend, we introduce a real-time acoustic watermarking system that binds speech to a caller's
+              physical articulatory motion. During a call, the caller's smartphone continuously emits ultrasonic
+              signals and captures reflections from mouth, jaw, and cheek movements using only the built-in
+              speaker and microphone. …
+            </p></div>
+          </details>
+          <details>
+            <summary>BibTeX</summary>
+            <div>
+<pre id="bib-edgesp">@inproceedings{hao2026ultrasoundwatermark,
+  title     = {Ultrasound Watermark: Real-time Acoustic Watermarking
+               against Voice Scams on Smartphones},
+  author    = {Hao, Renzhi and Cao, Shirui and Wen, Yizhu and Gupta, Rishav
+               and Nadendla, Dharani and Kafai, Mehran and Guo, Hanqing
+               and Li, Dong},
+  booktitle = {Proceedings of the 9th ACM/IEEE Workshop on Security
+               and Privacy in Edge Computing},
+  series    = {EdgeSP '26},
+  year      = {2026},
+  publisher = {IEEE},
+  address   = {Santa Clara, CA, USA},
+  note      = {To appear}
+}</pre>
+              <button class="copy-btn" type="button" data-copy="bib-edgesp" hidden>Copy BibTeX</button>
+            </div>
+          </details>
+        </li>
+
+        <!-- MobiSys '26 (published; author name as in the ACM record) -->
+        <li class="pub" id="pub-mobisys">
+          <p class="pub-tags"><span class="tag">Conference</span><span class="tag">Emerging Ideas</span></p>
+          <h3>Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</h3>
+          <p class="authors">Shirui Cao, Jie Xiong, <span class="me">Riishav Guptaa</span>, Sunghoon Ivan Lee, Jeremy Gummeson, Dong Li</p>
+          <p class="venue"><cite>ACM MobiSys 2026</cite> · Proceedings of the 24th Annual International Conference on Mobile Systems, Applications and Services, pp. 911–927</p>
+          <ul class="pub-links">
+            <li><a href="https://doi.org/10.1145/3745756.3809246"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Read the paper (DOI 10.1145/3745756.3809246)</a></li><!-- [L] doi.org link, not the ACM URL: a DOI is a stable identifier that keeps working if ACM reorganizes (slide 15) -->
+            <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Code and sample data on GitHub</a></li>
+          </ul>
+          <details>
+            <summary>Abstract</summary>
+            <div><p>
+              Cardiovascular diseases remain the leading cause of death worldwide, and Doppler blood flow indices
+              play a crucial role in their early detection and diagnosis. Existing ultrasound devices, though
+              effective, are costly, bulky, and unsuitable for daily or at-home use. In this work, we introduce
+              Phonotonos, a system that transforms commodity smartphones into portable and accessible tools for
+              through-skin ultrasonic sensing of blood flow velocity. We demonstrate that despite smartphones'
+              inherent limitations—including low ultrasound power, coarse spatial resolution, and lack of
+              beamforming—blood flow velocity waveforms can still be recovered using novel phase-based signal
+              processing, including nonlinearity cancellation and baseline drift removal. We further propose a
+              triple-modality framework that fuses Doppler ultrasound, arterial sound, and IMU for robust artery
+              localization and interfering motion (e.g., involuntary hand motion) rejection. Extensive
+              simulations, phantom experiments, and IRB-approved human studies validate that our proposed system
+              can measure four key Doppler indices (AT, S/D ratio, RI, PI) with accuracy comparable to dedicated
+              medical devices. These results highlight the potential of smartphones to democratize vascular
+              health monitoring and enable continuous cardiovascular screening in everyday environments.
+            </p></div>
+          </details>
+          <details>
+            <summary>BibTeX</summary>
+            <div>
+<pre id="bib-mobisys">@inproceedings{cao2026phonotonos,
+  title     = {[Emerging Ideas] Phonotonos: Through-Skin Ultrasonic
+               Blood Flow Sensing Using Smartphones},
+  author    = {Cao, Shirui and Xiong, Jie and Guptaa, Riishav and Lee, Sunghoon Ivan
+               and Gummeson, Jeremy and Li, Dong},
+  booktitle = {Proceedings of the 24th Annual International Conference
+               on Mobile Systems, Applications and Services},
+  series    = {MobiSys '26},
+  pages     = {911--927},
+  year      = {2026},
+  month     = jun,
+  publisher = {ACM},
+  doi       = {10.1145/3745756.3809246}
+}</pre>
+              <button class="copy-btn" type="button" data-copy="bib-mobisys" hidden>Copy BibTeX</button>
+            </div>
+          </details>
+        </li>
+      </ol>
+    </div>
   </section>
 
-<!-- ========== PUBLICATIONS ========== -->
-  <section id="publications">
-    <h2>Publications</h2>
-
-    <!-- Publication 1 -->
-    <article class="pub-row">
-      <div class="pub-thumb">
-        <img src="images/TissueCharacterization.jpg" alt="Acoustic tissue characterization thumbnail"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="thumb-placeholder" style="display:none;">Tissue Characterization</div>
-      </div>
-      <div class="pub-info">
-        <p class="pub-title">[Work-in-Progress] Smartphone-based Acoustic Tissue Characterization for Personalized Body-contact Systems</p>
-        <p class="pub-authors">
-          <strong>Rishav Gupta</strong>, Alyssa N. Maguina, Sithumina Weerarathna,
-          Janelle P. Clark, Dong Li
-        </p>
-        <p class="pub-venue">
-          <a href="https://www.sigmobile.org/mobicom/2026/" class="venue-badge accepted">ACM MobiCom 2026</a>
-          <!-- Accepted, not yet presented (MobiCom: Oct 26-30, 2026). After the conference, delete
-               this badge and add a Paper link with the DOI, as on the MobiSys entry. -->
-          <span class="venue-badge to-appear">To appear</span>
-        </p>
-      </div>
-    </article>
-
-    <!-- Publication 2 -->
-    <article class="pub-row">
-      <div class="pub-thumb">
-        <img src="images/Phonotonos_Demo.jpg" alt="Phonotonos demo thumbnail"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="thumb-placeholder" style="display:none;">Phonotonos Demo</div>
-      </div>
-      <div class="pub-info">
-        <p class="pub-title">[Demo] Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</p>
-        <p class="pub-authors">
-          <strong>Rishav Gupta</strong>, Shirui Cao, Jie Xiong, Sunghoon Ivan Lee,
-          Jeremy Gummeson, Dong Li
-        </p>
-        <p class="pub-venue">
-          <a href="https://www.sigmobile.org/mobicom/2026/" class="venue-badge accepted">ACM MobiCom 2026</a>
-          <!-- Accepted, not yet presented (MobiCom: Oct 26-30, 2026). After the conference, delete
-               this badge and add a Paper link with the DOI, as on the MobiSys entry. -->
-          <span class="venue-badge to-appear">To appear</span>
-        </p>
-      </div>
-    </article>
-
-    <!-- Publication 3 -->
-    <article class="pub-row">
-      <div class="pub-thumb">
-        <img src="images/Ultrasound_Watermark.jpg" alt="Ultrasound Watermark thumbnail"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="thumb-placeholder" style="display:none;">Ultrasound Watermark</div>
-      </div>
-      <div class="pub-info">
-        <p class="pub-title">Ultrasound Watermark: Real-time Acoustic Watermarking against Voice Scams on Smartphones</p>
-        <p class="pub-authors">
-          Renzhi Hao, Shirui Cao, Yizhu Wen, <strong>Rishav Gupta</strong>,
-          Dharani Nadendla, Mehran Kafai, Hanqing Guo, Dong Li
-        </p>
-        <p class="pub-venue">
-          <a href="https://acm-ieee-sec.org/2026/edgesp.php" class="venue-badge accepted">EdgeSP 2026</a>
-          <!-- Accepted, not yet presented (EdgeSP: Oct 13-16, 2026). After the conference, delete
-               this badge and add a Paper link with the DOI, as on the MobiSys entry. -->
-          <span class="venue-badge to-appear">To appear</span>
-        </p>
-      </div>
-    </article>
-
-    <!-- Publication 4 -->
-    <article class="pub-row">
-      <div class="pub-thumb">
-        <img src="images/Phonotonos_Waveform.jpg" alt="Phonotonos blood-flow velocity waveform"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="thumb-placeholder" style="display:none;">Phonotonos</div>
-      </div>
-      <div class="pub-info">
-        <p class="pub-title">[Emerging Ideas] Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</p>
-        <p class="pub-authors">
-          Shirui Cao, Jie Xiong, <strong>Rishav Gupta</strong>, Sunghoon Ivan Lee,
-          Jeremy Gummeson, Dong Li
-        </p>
-        <p class="pub-venue">
-          <a href="https://www.sigmobile.org/mobisys/2026/" class="venue-badge accepted">ACM MobiSys 2026</a>
-        </p>
-        <p class="pub-links">
-          <a href="https://dl.acm.org/doi/abs/10.1145/3745756.3809246"><i class="fa-solid fa-file-lines"></i> Paper</a>
-          <a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github"></i> Code</a>
-        </p>
-      </div>
-    </article>
-
+  <!-- ========== NEWS: dated, newest first; kept short so it can't go stale quietly (slide 22) ========== -->
+  <section class="section" id="news" aria-labelledby="news-h">
+    <div class="wrap">
+      <h2 id="news-h">News</h2>
+      <ul class="news">
+        <li><time datetime="2026-07">July 2026</time><span>Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong> in the UMBC Graduate Student Association for 2026–2027.</span></li><!-- [L] <time datetime>: a machine-readable date beside the human one -->
+        <li><time datetime="2026-05">May 2026</time><span>Received the <strong>Computing for Social Good Special Award</strong> at COEIT Research Day, presented by Dean Jeanne M. VanBriesen. One of only 2 awards across 114 posters.</span></li>
+        <li><time datetime="2026-05">May 2026</time><span>PocketCardio won <strong>1st Place</strong> at the Maryland NEW VENTURE™ Program Pitch Night at bwtech@UMBC.</span></li>
+        <li><time datetime="2026-04">April 2026</time><span>Received the <strong>Best Poster Award</strong> at CSEE Research Day, UMBC.</span></li>
+        <li><time datetime="2025-05">May 2025</time><span>Received the <strong>Best Poster Award</strong> at COEIT Research Day, UMBC.</span></li>
+      </ul>
+    </div>
   </section>
 
-  <!-- ========== EXPERIENCE (research position first, then industry) ========== -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul class="entry-list">
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-flask"></i></div>
-        <div class="entry-body">
-          <div class="entry-top">
-            <a href="https://www.umbc.edu" class="entry-title">University of Maryland, Baltimore County</a>
-            <!-- "Current" rather than a month count: a count like "1 yr 8 mos" would go stale every month -->
-            <span class="exp-duration">Current</span>
+  <!-- ========== EXPERIENCE: what have you already done? (slide 5, recruiters) ========== -->
+  <section class="section" id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <h2 id="exp-h">Experience</h2>
+      <ul class="entries"><!-- [L] no decorative icons beside entries: they were "mystery icons" (slide 18) -->
+        <li class="entry">
+          <div>
+            <p class="entry-title">Graduate Research Assistant</p>
+            <p class="entry-sub"><a href="https://leetton.github.io/current-members.html">Future Sensing and Interaction (FSI) Lab</a>, UMBC · Baltimore, MD</p>
+            <p class="entry-note">Smartphone ultrasound sensing for cardiovascular health (see <a href="#research">Research</a>).</p>
           </div>
-          <div class="entry-sub">Graduate Research Assistant, <a href="https://leetton.github.io/fsi/">Future Sensing and Interaction (FSI) Lab</a></div>
-          <div class="entry-meta">Jun 2025 – Present &middot; Baltimore, MD</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-brands fa-app-store-ios"></i></div>
-        <div class="entry-body">
-          <div class="entry-top">
-            <a href="https://www.gojek.com" class="entry-title">Gojek (GoTo Group)</a>
-            <span class="exp-duration">2 yrs 7 mos</span>
+          <p class="entry-when">Jun 2025 – Present</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Senior iOS Engineer</p>
+            <p class="entry-sub"><a href="https://www.gojek.com">Gojek (GoTo Group)</a> · Bengaluru, India</p>
+            <p class="entry-note">Built in-house analytics tooling to replace a third-party SDK, and automated the bi-weekly iOS release pipeline.</p>
           </div>
-          <div class="entry-sub">Senior iOS Engineer</div>
-          <div class="entry-meta">Feb 2022 – Sep 2024 &middot; Bengaluru, India</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-        <div class="entry-body">
-          <div class="entry-top">
-            <a href="https://www.gonuclei.com" class="entry-title">Nuclei</a>
-            <span class="exp-duration">2 yrs 7 mos</span>
+          <p class="entry-when">Feb 2022 – Sep 2024</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Senior iOS Developer &amp; Team Lead</p>
+            <p class="entry-sub"><a href="https://www.gonuclei.com">Nuclei</a> · Bengaluru, India</p>
+            <p class="entry-note">Founding iOS developer of FedMobile for Federal Bank; promoted to lead a team of four iOS developers.</p>
           </div>
-          <div class="entry-sub">Senior iOS Developer &amp; Team Lead</div>
-          <div class="entry-meta">Jul 2019 – Feb 2022 &middot; Bengaluru, India</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-brands fa-android"></i></div>
-        <div class="entry-body">
-          <div class="entry-top">
-            <a href="https://hera.ba/en/" class="entry-title">Hera doo</a>
-            <span class="exp-duration">2 mos</span>
+          <p class="entry-when">Jul 2019 – Feb 2022</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Android Developer Intern</p>
+            <p class="entry-sub"><a href="https://hera.ba/en/">Hera doo</a> · Mostar, Bosnia and Herzegovina</p>
+            <p class="entry-note">Built an end-to-end Android sales-order application.</p>
           </div>
-          <div class="entry-sub">Android Developer Intern</div>
-          <div class="entry-meta">Jun – Jul 2018 &middot; Mostar, Bosnia and Herzegovina</div>
-        </div>
-      </li>
-
-    </ul>
+          <p class="entry-when">Jun – Jul 2018</p>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <!-- ========== EDUCATION ========== -->
-  <section id="education">
-    <h2>Education</h2>
-    <ul class="entry-list">
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">PhD, Computer Science</div>
-          <div class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a></div>
-          <div class="entry-meta">Jan 2026 – Present</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">MS, Computer Science</div>
-          <div class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a></div>
-          <div class="entry-meta">Jan 2025 – Dec 2025 &middot; GPA 4.00/4.00</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">B.Tech, Information Technology</div>
-          <div class="entry-sub"><a href="https://www.manipal.edu/mit.html">Manipal Institute of Technology</a></div>
-          <div class="entry-meta">Jun 2015 – May 2019 &middot; Ranked 8th of 132</div>
-        </div>
-      </li>
-
-    </ul>
+  <section class="section" id="education" aria-labelledby="edu-h">
+    <div class="wrap">
+      <h2 id="edu-h">Education</h2>
+      <ul class="entries">
+        <li class="entry">
+          <div>
+            <p class="entry-title">Ph.D., Computer Science</p>
+            <p class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> · Advisor: Dr. Dong Li</p>
+          </div>
+          <p class="entry-when">Jan 2026 – Present</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">M.S., Computer Science</p>
+            <p class="entry-sub"><a href="https://www.umbc.edu">University of Maryland, Baltimore County</a> · GPA 4.00/4.00</p>
+          </div>
+          <p class="entry-when">Jan 2025 – Dec 2025</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">B.Tech., Information Technology</p>
+            <p class="entry-sub"><a href="https://www.manipal.edu/mit.html">Manipal Institute of Technology</a> · Ranked 8th of 132</p>
+          </div>
+          <p class="entry-when">Jun 2015 – May 2019</p>
+        </li>
+      </ul>
+    </div>
   </section>
 
-  <!-- ========== AWARDS ========== -->
-  <section id="awards">
-    <h2>Awards</h2>
-    <ul class="entry-list">
-
-      <li class="entry-item">
-        <div class="entry-icon award-icon"><i class="fa-solid fa-trophy"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">Computing for Social Good Special Award</div>
-          <div class="entry-sub"><a href="https://coeit.umbc.edu/coeit-research-day/">COEIT Research Day, UMBC</a></div>
-          <div class="entry-meta">May 2026 &middot; 1 of 2 awards across 114 posters</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon award-icon"><i class="fa-solid fa-ranking-star"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">1st Place, Maryland NEW VENTURE&trade; Program Pitch Night</div>
-          <div class="entry-sub"><a href="https://bwtech.umbc.edu/programs/maryland-new-venture/">bwtech@UMBC</a></div>
-          <div class="entry-meta">May 2026 &middot; for <em>PocketCardio</em></div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon award-icon"><i class="fa-solid fa-award"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">Best Poster Award</div>
-          <div class="entry-sub"><a href="https://www.csee.umbc.edu/news-events/2026-csee-research-day/">CSEE Research Day, UMBC</a></div>
-          <div class="entry-meta">April 2026</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon award-icon"><i class="fa-solid fa-award"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">Best Poster Award</div>
-          <div class="entry-sub"><a href="https://coeit.umbc.edu/coeit-research-day/">COEIT Research Day, UMBC</a></div>
-          <div class="entry-meta">May 2025</div>
-        </div>
-      </li>
-
-    </ul>
+  <!-- ========== HONORS & AWARDS ========== -->
+  <section class="section" id="awards" aria-labelledby="awards-h">
+    <div class="wrap">
+      <h2 id="awards-h">Honors &amp; Awards</h2>
+      <ul class="entries">
+        <li class="entry">
+          <div>
+            <p class="entry-title">Computing for Social Good Special Award</p>
+            <p class="entry-sub"><a href="https://coeit.umbc.edu/coeit-research-day/">COEIT Research Day, UMBC</a> · 1 of 2 awards across 114 posters</p>
+          </div>
+          <p class="entry-when">May 2026</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">1st Place, Maryland NEW VENTURE™ Program Pitch Night</p>
+            <p class="entry-sub"><a href="https://bwtech.umbc.edu/programs/maryland-new-venture/">bwtech@UMBC</a> · for <em>PocketCardio</em></p>
+          </div>
+          <p class="entry-when">May 2026</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Best Poster Award</p>
+            <p class="entry-sub"><a href="https://www.csee.umbc.edu/news-events/2026-csee-research-day/">CSEE Research Day, UMBC</a></p>
+          </div>
+          <p class="entry-when">Apr 2026</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Best Poster Award</p>
+            <p class="entry-sub"><a href="https://coeit.umbc.edu/coeit-research-day/">COEIT Research Day, UMBC</a></p>
+          </div>
+          <p class="entry-when">May 2025</p>
+        </li>
+      </ul>
+    </div>
   </section>
 
-  <!-- ========== SERVICE & LEADERSHIP (newest first; mirrors the CV) ========== -->
-  <section id="service">
-    <h2>Service &amp; Leadership</h2>
-    <ul class="entry-list">
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-users"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">Chair, Graduate Assistant Advisory Committee (GAAC)</div>
-          <div class="entry-sub"><a href="https://gsa.umbc.edu/gaac/">UMBC Graduate Student Association</a></div>
-          <div class="entry-meta">2026 – 2027</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-user-tie"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">HR Head</div>
-          <div class="entry-sub">ISTE Students&rsquo; Chapter, Manipal Institute of Technology</div>
-          <div class="entry-meta">2017 – 2018</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-calendar-check"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">Co-Event Head (Acumen)</div>
-          <div class="entry-sub">TechTatva &rsquo;17, Manipal Institute of Technology</div>
-          <div class="entry-meta">Oct 2017</div>
-        </div>
-      </li>
-
-      <li class="entry-item">
-        <div class="entry-icon"><i class="fa-solid fa-people-group"></i></div>
-        <div class="entry-body">
-          <div class="entry-title">Management Committee Member</div>
-          <div class="entry-sub">ISTE Students&rsquo; Chapter, Manipal Institute of Technology</div>
-          <div class="entry-meta">2016 – 2017</div>
-        </div>
-      </li>
-
-    </ul>
+  <!-- ========== SERVICE & LEADERSHIP ========== -->
+  <section class="section" id="service" aria-labelledby="service-h">
+    <div class="wrap">
+      <h2 id="service-h">Service &amp; Leadership</h2>
+      <ul class="entries">
+        <li class="entry">
+          <div>
+            <p class="entry-title">Chair, Graduate Assistant Advisory Committee (GAAC)</p>
+            <p class="entry-sub"><a href="https://gsa.umbc.edu/gaac/">UMBC Graduate Student Association</a></p>
+          </div>
+          <p class="entry-when">2026 – 2027</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">HR Head</p>
+            <p class="entry-sub">ISTE Students’ Chapter, Manipal Institute of Technology</p>
+          </div>
+          <p class="entry-when">2017 – 2018</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Co-Event Head (Acumen)</p>
+            <p class="entry-sub">TechTatva ’17, Manipal Institute of Technology</p>
+          </div>
+          <p class="entry-when">Oct 2017</p>
+        </li>
+        <li class="entry">
+          <div>
+            <p class="entry-title">Management Committee Member</p>
+            <p class="entry-sub">ISTE Students’ Chapter, Manipal Institute of Technology</p>
+          </div>
+          <p class="entry-when">2016 – 2017</p>
+        </li>
+      </ul>
+    </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer">
-    <p>Last updated: September 2026 &middot; Hosted on GitHub Pages</p>
-  </footer>
+  <!-- ========== CONTACT: how do I reach you? where are you? (slides 7, 9, 23) ========== -->
+  <section class="section" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <h3>Email</h3>
+          <p>The best way to reach me:<br /><a href="mailto:rishavg1@umbc.edu">rishavg1@umbc.edu</a></p>
+        </div>
+        <div>
+          <h3>Where I am</h3>
+          <p>Future Sensing and Interaction Lab<br />Department of Computer Science and Electrical Engineering<br />UMBC, Baltimore, MD</p>
+        </div>
+        <div>
+          <h3>Profiles</h3>
+          <ul class="plain-list">
+            <li><a href="https://scholar.google.com/citations?user=S7ptSVcAAAAJ&amp;hl=en"><i class="fa-brands fa-google-scholar" aria-hidden="true"></i>Google Scholar</a></li>
+            <li><a href="https://github.com/RiishavRG"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/riishavrg/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
+            <li><a href="https://leetton.github.io/current-members.html"><i class="fa-solid fa-flask" aria-hidden="true"></i>FSI Lab</a></li>
+            <!-- <li><a href="https://orcid.org/0000-0000-0000-0000"><i class="fa-brands fa-orcid" aria-hidden="true"></i>ORCID</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div><!-- end .container -->
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Rishav Gupta · Last updated October 2026</p><!-- [L] visible date: readers can judge freshness (slide 22) -->
+    <p>Hand-written HTML &amp; CSS, hosted on GitHub Pages</p>
+  </div>
+</footer>
+
+<p class="sr-only" aria-live="polite" id="copy-status"></p><!-- [L] aria-live: screen readers announce "BibTeX copied" when this text changes -->
+
 <script>
-  document.querySelectorAll('a[href^="http"]').forEach(link => {
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-  });
+  // Copy-BibTeX buttons. Progressive enhancement: the BibTeX is readable and selectable without JavaScript;
+  // this only adds one-click copying where the browser supports the clipboard API.
+  if (navigator.clipboard) {                                              // [L] feature check, not browser sniffing: works in any browser that supports it
+    const status = document.getElementById('copy-status');                // [L] the hidden live region declared above
+    document.querySelectorAll('.copy-btn').forEach((btn) => {             // [L] one button per BibTeX block
+      btn.hidden = false;                                                 // [L] reveal only now that copying can actually work
+      btn.addEventListener('click', async () => {                         // [L] async: writeText returns a Promise
+        const text = document.getElementById(btn.dataset.copy).textContent;  // [L] data-copy holds the id of the <pre> to copy
+        try {
+          await navigator.clipboard.writeText(text);                      // [L] put the BibTeX on the clipboard
+          btn.textContent = 'Copied';                                     // [L] visible confirmation
+          status.textContent = 'BibTeX copied to clipboard';              // [L] spoken confirmation
+          setTimeout(() => { btn.textContent = 'Copy BibTeX'; }, 2000);   // [L] 2000 ms, then restore the label
+        } catch (err) {
+          btn.textContent = 'Select the text to copy';                    // [L] e.g. clipboard permission denied: tell the user what to do instead
+        }
+      });
+    });
+  }
 </script>
 </body>
 </html>

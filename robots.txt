@@ -1,0 +1,4 @@
+# robots.txt - lets all search engines index the site and points them to the sitemap (slide 13).
+User-agent: *
+Allow: /
+Sitemap: https://riishavguptaa.com/sitemap.xml
