@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" /><!-- [L] display=swap: show fallback text immediately, never invisible text while fonts load -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /><!-- [L] versioned CDN URL (6.5.0), not "latest": icons can't change under you -->
-  <link rel="stylesheet" href="style.css?v=456533f6" /><!-- [L] ?v= = fingerprint of style.css, set by _tools/stamp_css.py: a changed stylesheet gets a new URL, so no browser mixes this page with an old cached copy -->
+  <link rel="stylesheet" href="style.css?v=ea3c4487" /><!-- [L] ?v= = fingerprint of style.css, set by _tools/stamp_css.py: a changed stylesheet gets a new URL, so no browser mixes this page with an old cached copy -->
 
   <!-- Structured data: tells search engines both names are one person (stable identity, slides 17-20) -->
   <script type="application/ld+json">
@@ -235,11 +235,13 @@
 
         <!-- MobiCom '26 WiP (first author) -->
         <li class="pub" id="pub-tissue">
-          <p class="pub-tags"><span class="tag">WiP</span><!-- [L] plain text, not <abbr title>: browsers underline <abbr> with dots (seen in Safari); the venue line below already spells out "work-in-progress track" --><span class="tag tag-appear">To appear</span></p>
+          <p class="pub-tags"><span class="tag">WiP</span><!-- [L] plain text, not <abbr title>: browsers underline <abbr> with dots (seen in Safari); the venue line below already spells out "work-in-progress track" --></p>
           <h3>Smartphone-based Acoustic Tissue Characterization for Personalized Body-contact Systems</h3>
           <p class="authors"><span class="me">Rishav Gupta</span>, Alyssa N. Maguina, Sithumina Weerarathna, Janelle P. Clark, Dong Li</p>
-          <p class="venue"><cite>ACM MobiCom 2026</cite>&nbsp;· 32nd International Conference on Mobile Computing and Networking, work-in-progress track&nbsp;· Austin, TX</p>
-          <!-- After the conference: add a <ul class="pub-links"> with the DOI link (copy the MobiSys entry) and remove "To appear". No venue-homepage links: they are not paper links (slide 14) and they expire after the event (slide 29). -->
+          <p class="venue"><cite>ACM MobiCom 2026</cite>&nbsp;· 32nd International Conference on Mobile Computing and Networking, work-in-progress track, pp. 1693–1696&nbsp;· Austin, TX</p><!-- [L] pages from the official ACM record (DOI metadata) -->
+          <ul class="pub-links">
+            <li><a href="https://doi.org/10.1145/3795866.3844787"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Read the paper (DOI 10.1145/3795866.3844787)</a></li><!-- [L] doi.org link, not ResearchGate: the DOI is the permanent official record (slide 19) -->
+          </ul>
           <details>
             <summary>Abstract<span class="sr-only">: acoustic tissue characterization, MobiCom 2026</span></summary><!-- [L] sr-only paper name: a screen reader hears "Abstract: acoustic tissue characterization", not four identical "Abstract" buttons (slide 28: controls must be descriptive); hidden visually so the page stays uncluttered -->
             <div><p>
@@ -267,10 +269,12 @@
   booktitle = {Proceedings of the 32nd Annual International Conference
                on Mobile Computing and Networking},
   series    = {MobiCom '26},
+  pages     = {1693--1696},
   year      = {2026},
+  month     = oct,
   publisher = {ACM},
   address   = {Austin, TX, USA},
-  note      = {To appear}
+  doi       = {10.1145/3795866.3844787}
 }</pre>
               <button class="copy-btn" type="button" data-copy="bib-tissue" hidden>Copy BibTeX</button><!-- [L] hidden until JS confirms the clipboard works: no dead button -->
             </div>
@@ -279,11 +283,12 @@
 
         <!-- MobiCom '26 demo (first author) -->
         <li class="pub" id="pub-demo">
-          <p class="pub-tags"><span class="tag">Demo</span><span class="tag tag-appear">To appear</span></p>
+          <p class="pub-tags"><span class="tag">Demo</span><span class="tag tag-award"><i class="fa-solid fa-trophy" aria-hidden="true"></i>ACM SRC 1st Place (Graduate)</span></p><!-- [L] award shown on the work that won it, in words; the trophy icon is decoration only (aria-hidden) -->
           <h3>Phonotonos: Through-Skin Ultrasonic Blood Flow Sensing Using Smartphones</h3>
           <p class="authors"><span class="me">Rishav Gupta</span>, Shirui Cao, Jie Xiong, Sunghoon Ivan Lee, Jeremy Gummeson, Dong Li</p>
-          <p class="venue"><cite>ACM MobiCom 2026</cite>&nbsp;· 32nd International Conference on Mobile Computing and Networking, demo track&nbsp;· Austin, TX</p>
+          <p class="venue"><cite>ACM MobiCom 2026</cite>&nbsp;· 32nd International Conference on Mobile Computing and Networking, demo track, pp. 1777–1779&nbsp;· Austin, TX</p>
           <ul class="pub-links">
+            <li><a href="https://doi.org/10.1145/3795866.3848433"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Read the paper (DOI 10.1145/3795866.3848433)</a></li>
             <li><a href="https://github.com/Phonotonos/Phonotonos"><i class="fa-brands fa-github" aria-hidden="true"></i>Phonotonos code on GitHub</a></li>
           </ul>
           <details>
@@ -313,10 +318,12 @@
   booktitle = {Proceedings of the 32nd Annual International Conference
                on Mobile Computing and Networking},
   series    = {MobiCom '26},
+  pages     = {1777--1779},
   year      = {2026},
+  month     = oct,
   publisher = {ACM},
   address   = {Austin, TX, USA},
-  note      = {To appear}
+  doi       = {10.1145/3795866.3848433}
 }</pre>
               <button class="copy-btn" type="button" data-copy="bib-demo" hidden>Copy BibTeX</button>
             </div>
@@ -426,6 +433,7 @@
       <div class="section-body">
       <div class="news-grid"><!-- [L] one grid around both lists: News and In the media share a single date column, so their text starts at the same x -->
       <ul class="news">
+        <li><time datetime="2026-10">Oct 2026</time><span>Won <strong>1st Place (Graduate)</strong> in the <strong>ACM Student Research Competition</strong> at ACM MobiCom 2026 in Austin, TX, for Phonotonos. Next: the ACM SRC Grand Finals.</span></li>
         <li><time datetime="2026-07">Jul 2026</time><span>Appointed <strong>Chair of the Graduate Assistant Advisory Committee (GAAC)</strong> in the UMBC Graduate Student Association for 2026–2027.</span></li><!-- [L] <time datetime>: a machine-readable date beside the human one -->
         <li><time datetime="2026-05">May 2026</time><span>Received the <strong>COEIT Computing for Social Good Award</strong> at Research Day, presented by Dean Jeanne M. van Briesen. One of only 2 awards across 114 posters.</span></li><!-- [L] "van Briesen", not "VanBriesen": the spelling UMBC News and the CV use (slide 29: CV and site must agree) -->
         <li><time datetime="2026-05">May 2026</time><span>PocketCardio won <strong>1st Place</strong> at the Maryland NEW VENTURE™ Program Pitch Night at bwtech@UMBC.</span></li>
@@ -525,6 +533,13 @@
       <h2 id="awards-h">Honors &amp; Awards</h2>
       <div class="section-body">
       <ul class="entries">
+        <li class="entry">
+          <div>
+            <p class="entry-title">1st Place (Graduate), ACM Student Research Competition</p>
+            <p class="entry-sub">ACM MobiCom 2026, Austin, TX&nbsp;· for <em>Phonotonos</em>; advanced to the ACM SRC Grand Finals</p><!-- [L] no link: no stable page for the SRC results yet, and conference homepages expire (slide 29) -->
+          </div>
+          <p class="entry-when">Oct 2026</p>
+        </li>
         <li class="entry">
           <div>
             <p class="entry-title">COEIT Computing for Social Good Award</p><!-- [L] official name (certificate, UMBC News x3), not "Special Award"; update the CV to match (slide 29) -->
@@ -637,7 +652,7 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>© 2026 Rishav Gupta&nbsp;· Last updated October 2026</p><!-- [L] visible date: readers can judge freshness (slide 29) -->
+    <p>© 2026 Rishav Gupta&nbsp;· Last updated November 2026</p><!-- [L] visible date: readers can judge freshness (slide 29) -->
     <p>Hand-written HTML &amp; CSS, hosted on GitHub Pages</p>
   </div>
 </footer>
