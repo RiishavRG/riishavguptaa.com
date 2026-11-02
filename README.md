@@ -39,12 +39,12 @@ navigation, research identity statement, citable publications, accessibility, mo
   plus `data-end="YYYY-MM"` once it ends (leave `data-end` out while it's current: the duration then
   updates itself every month). Durations count both the first and last month, like LinkedIn.
 - **Press coverage:** add a `<li>` at the top of "In the media" (under News), with the headline as the link text.
-- **CV:** replace `Rishav_Gupta_CV.pdf` with the new PDF, same file name.
+- **CV:** replace `Rishav_Gupta_CV.pdf` with the new PDF, same file name, then run `python3 _tools/stamp_versions.py`.
 - **New headshot:** replace `images/headshot.png`, then run `python3 _tools/make_assets.py`.
 - **ORCID:** once you have an iD, uncomment the two ORCID lines in `index.html` (hero and Contact).
 - **Always:** change "Last updated" in the footer and `<lastmod>` in `sitemap.xml`.
-- **After any edit to `style.css`:** run `python3 _tools/stamp_css.py`. It updates the `?v=` fingerprint on the
-  stylesheet link, so visitors never get the new page with an old cached stylesheet (browsers keep it 10 minutes).
+- **After any edit to `style.css` or a new CV:** run `python3 _tools/stamp_versions.py`. It updates the `?v=`
+  fingerprints on the stylesheet and CV links, so visitors never get an old cached copy (browsers keep files 10 minutes).
   `check_site.mjs` fails if you forget.
 
 ## 15-minute check, 2–4 times a year (January, May, August, December)
